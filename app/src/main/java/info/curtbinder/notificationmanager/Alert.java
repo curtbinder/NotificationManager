@@ -1,9 +1,12 @@
 package info.curtbinder.notificationmanager;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by binder on 9/10/14.
  */
-public class Alert {
+public class Alert implements Parcelable {
 
     private int id;
     private String paramName;
@@ -87,5 +90,56 @@ public class Alert {
 
     public void setAlertDescription(String alertDescription) {
         this.alertDescription = alertDescription;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel out, int i) {
+        out.writeInt(id);
+        out.writeString(paramName);
+        out.writeString(paramDescription);
+        out.writeInt(comparison);
+        out.writeInt(value);
+        out.writeString(lastAlert);
+        out.writeString(alertName);
+        out.writeString(alertDescription);
+    }
+
+    public Alert(Parcel in) {
+        id = in.readInt();
+        paramName = in.readString();
+        paramDescription = in.readString();
+        comparison = in.readInt();
+        value = in.readInt();
+        lastAlert = in.readString();
+        alertName = in.readString();
+        alertDescription = in.readString();
+    }
+
+    public static Creator<Alert> CREATOR = new Creator<Alert>() {
+        @Override
+        public Alert createFromParcel(Parcel parcel) {
+            return new Alert(parcel);
+        }
+
+        @Override
+        public Alert[] newArray(int i) {
+            return new Alert[i];
+        }
+    };
+
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Alert #").append(id);
+        sb.append(" - {ParamName: ").append(paramName);
+        sb.append(", ParamDescription: ").append(paramDescription);
+        sb.append(", Comparision: ").append(comparison).append(", Value: ").append(value);
+        sb.append(", LastAlert: ").append(lastAlert).append(", Name: ").append(alertName);
+        sb.append(", Description: ").append(alertDescription).append("}");
+        return sb.toString();
     }
 }

@@ -2,7 +2,6 @@ package info.curtbinder.notificationmanager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.util.Log;
 
 import com.squareup.okhttp.OkHttpClient;
@@ -18,7 +17,6 @@ import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParserFactory;
@@ -53,15 +51,8 @@ public class CommTask implements Runnable {
             xr.parse(new InputSource(new StringReader(response.body().string())));
             response.body().close();
             // send message to main thread with the data
-//            List<Alert> alerts = xml.getAlerts();
-//            for (Alert a : alerts) {
-//                Log.d("COMM", "Alert: " + a.getAlertName() + ", " + a.getAlertDescription());
-//            }
-
-            // TODO figure out how to pass the alerts to the main activity
             Intent i = new Intent(MessageCommands.GET_ALERTS);
-            ArrayList<Alert> alerts = xml.getAlerts();
-            i.putParcelableArrayListExtra("ALERTS", (ArrayList) alerts);
+            i.putParcelableArrayListExtra("ALERTS", (ArrayList)xml.getAlerts());
             Log.d("COMM", "Send Broadcast");
             ctx.sendBroadcast(i);
         } catch (MalformedURLException e) {

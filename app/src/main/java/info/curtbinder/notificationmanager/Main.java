@@ -11,20 +11,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Main extends Activity {
 
     private static final String TAG = Main.class.getSimpleName();
-    private NotifcationReceiver receiver;
+    private NotificationReceiver receiver;
     private IntentFilter filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        receiver = new NotifcationReceiver();
+        receiver = new NotificationReceiver();
         filter = new IntentFilter(MessageCommands.GET_ALERTS);
     }
 
@@ -58,6 +57,7 @@ public class Main extends Activity {
         } else if ( id == R.id.action_refresh ) {
             // refresh the alerts
             getAlerts();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -67,19 +67,16 @@ public class Main extends Activity {
         new UpdateTask().execute(getBaseContext());
     }
 
-    private class NotifcationReceiver extends BroadcastReceiver {
+    private class NotificationReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if ( action.equals(MessageCommands.GET_ALERTS) ) {
-                Log.d(TAG, "onReceive GetAlerts");
-                // display alerts
-                // TODO receive the alerts from the task
-//                ArrayList<Alert> alerts = (ArrayList)intent.getParcelableArrayListExtra("ALERTS");
-//                for (Alert a : alerts) {
-//                    Log.d(TAG, "Alert: " + a.getAlertName() + ", " + a.getAlertDescription());
-//                }
+                ArrayList<Alert> alerts = (ArrayList)intent.getParcelableArrayListExtra("ALERTS");
+                for (Alert a : alerts) {
+                    Log.d(TAG, a.toString());
+                }
             }
         }
     }
