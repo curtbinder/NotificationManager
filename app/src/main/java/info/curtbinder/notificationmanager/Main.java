@@ -25,6 +25,10 @@ public class Main extends Activity {
         setContentView(R.layout.activity_main);
         receiver = new NotificationReceiver();
         filter = new IntentFilter(MessageCommands.GET_ALERTS);
+        getFragmentManager().beginTransaction()
+                .add(R.id.frag_container, NotificationListFragment.newInstance(null))
+                .commit();
+
     }
 
     @Override
@@ -74,9 +78,11 @@ public class Main extends Activity {
             String action = intent.getAction();
             if ( action.equals(MessageCommands.GET_ALERTS) ) {
                 ArrayList<Alert> alerts = (ArrayList)intent.getParcelableArrayListExtra("ALERTS");
-                for (Alert a : alerts) {
-                    Log.d(TAG, a.toString());
-                }
+//                for (Alert a : alerts) {
+//                    Log.d(TAG, a.toString());
+//                }
+                RefreshInterface r = (RefreshInterface) getFragmentManager().findFragmentById(R.id.frag_container);
+                r.refreshList(alerts);
             }
         }
     }
