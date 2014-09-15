@@ -49,9 +49,20 @@ public class NotificationListAdapter extends BaseAdapter {
         View row = inflater.inflate(R.layout.row_notification_item, viewGroup, false);
         TextView tv1 = (TextView) row.findViewById(R.id.textName);
         TextView tv2 = (TextView) row.findViewById(R.id.textDescription);
+        TextView tv3 = (TextView) row.findViewById(R.id.textComparison);
         Alert a = alerts.get(i);
-        tv1.setText(a.getAlertName());
-        tv2.setText(a.getAlertDescription());
+        String name = a.getAlertName();
+        String pName = a.getParamName();
+        if ( name.equals("null") ) name = pName;
+        tv1.setText(name);
+        String description = a.getAlertDescription();
+        if ( description.equals("null") ) description = a.getParamDescription();
+        tv2.setText(description);
+        // ParamName Comparision Value
+        int c = a.getComparison();
+        int v = a.getValue();
+        String s = String.format("%s %s %d", pName, Alert.getComparisonString(c), v);
+        tv3.setText(s);
         return row;
     }
 }

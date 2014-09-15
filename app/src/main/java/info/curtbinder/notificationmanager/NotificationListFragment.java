@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +16,7 @@ public class NotificationListFragment extends ListFragment implements RefreshInt
     public static NotificationListFragment newInstance ( ArrayList<Alert> alerts ) {
         NotificationListFragment f = new NotificationListFragment();
         Bundle args = new Bundle();
-        args.putParcelableArrayList("ALERTS", alerts);
+        args.putParcelableArrayList(MessageCommands.MSG_ALERT, alerts);
         f.setArguments(args);
         return f;
     }
@@ -34,7 +33,7 @@ public class NotificationListFragment extends ListFragment implements RefreshInt
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         // set the list adapter for our list
-        ArrayList<Alert> alerts = getArguments().getParcelableArrayList("ALERTS");
+        ArrayList<Alert> alerts = getArguments().getParcelableArrayList(MessageCommands.MSG_ALERT);
         NotificationListAdapter adapter = new NotificationListAdapter(getActivity().getBaseContext(), alerts);
         setListAdapter(adapter);
     }

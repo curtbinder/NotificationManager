@@ -77,7 +77,7 @@ public class Main extends Activity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             if ( action.equals(MessageCommands.GET_ALERTS) ) {
-                ArrayList<Alert> alerts = (ArrayList)intent.getParcelableArrayListExtra("ALERTS");
+                ArrayList<Alert> alerts = (ArrayList)intent.getParcelableArrayListExtra(MessageCommands.MSG_ALERT);
 //                for (Alert a : alerts) {
 //                    Log.d(TAG, a.toString());
 //                }

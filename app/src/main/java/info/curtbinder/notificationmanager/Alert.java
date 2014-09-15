@@ -52,6 +52,31 @@ public class Alert implements Parcelable {
         this.paramDescription = paramDescription;
     }
 
+    public static String getComparisonString(int comparison) {
+        String s = "";
+        switch ( comparison ) {
+            case 0:
+                s = "<=";
+                break;
+            case 1:
+                s = "<";
+                break;
+            case 2:
+                s = "=";
+                break;
+            case 3:
+                s = ">";
+                break;
+            case 4:
+                s = ">=";
+                break;
+            default:
+                s = "!";
+                break;
+        }
+        return s;
+    }
+
     public int getComparison() {
         return comparison;
     }
