@@ -8,5 +8,9 @@
     <string name="message_alerts_from_portal">Notifications from the Portal:</string>
     <string name="edit">Edit Notification</string>
     <string name="delete">Delete Notification</string>
+    <string name="username_key">username</string>
+    <string name="username_title">Portal Username</string>
+    <string name="no_username_set">No username set, canceled</string>
+    <string name="general">General</string>
 
 </resources>

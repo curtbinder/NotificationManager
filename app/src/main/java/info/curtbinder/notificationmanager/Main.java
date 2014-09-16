@@ -5,9 +5,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -57,6 +60,7 @@ public class Main extends Activity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this, Settings.class));
             return true;
         } else if ( id == R.id.action_refresh ) {
             // refresh the alerts
@@ -68,6 +72,13 @@ public class Main extends Activity {
 
     private void getAlerts() {
         // run on background thread, not main thread
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        String username = prefs.getString(getString(R.string.username_key), "");
+        if (username.isEmpty()) {
+            // empty username
+            Toast.makeText(this, R.string.no_username_set, Toast.LENGTH_SHORT).show();
+            return;
+        }
         new UpdateTask().execute(getBaseContext());
     }
 
