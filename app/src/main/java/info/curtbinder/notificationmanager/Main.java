@@ -9,11 +9,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
 
-public class Main extends Activity {
+public class Main extends Activity implements Button.OnClickListener {
 
     private static final String TAG = Main.class.getSimpleName();
     private NotificationReceiver receiver;
@@ -25,6 +27,12 @@ public class Main extends Activity {
         setContentView(R.layout.activity_main);
         receiver = new NotificationReceiver();
         filter = new IntentFilter(MessageCommands.GET_ALERTS);
+        Button b = (Button) findViewById(R.id.button_add);
+        b.setOnClickListener(this);
+        b = (Button) findViewById(R.id.button_add_all);
+        b.setOnClickListener(this);
+        b = (Button) findViewById(R.id.button_cancel);
+        b.setOnClickListener(this);
         getFragmentManager().beginTransaction()
                 .add(R.id.frag_container, NotificationListFragment.newInstance(null))
                 .commit();
@@ -69,6 +77,19 @@ public class Main extends Activity {
     private void getAlerts() {
         // run on background thread, not main thread
         new UpdateTask().execute(getBaseContext());
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch(id) {
+            case R.id.button_add:
+                break;
+            case R.id.button_add_all:
+                break;
+            case R.id.button_cancel:
+                break;
+        }
     }
 
     private class NotificationReceiver extends BroadcastReceiver {
