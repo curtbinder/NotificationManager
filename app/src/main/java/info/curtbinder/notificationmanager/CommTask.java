@@ -2,7 +2,6 @@ package info.curtbinder.notificationmanager;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -51,7 +50,7 @@ public class CommTask implements Runnable {
             xr.parse(new InputSource(new StringReader(response.body().string())));
             response.body().close();
             // send message to main thread with the data
-            Intent i = new Intent(MessageCommands.GET_ALERTS);
+            Intent i = new Intent(MessageCommands.UPDATE_DISPLAY_ALERTS);
             i.putParcelableArrayListExtra("ALERTS", (ArrayList)xml.getAlerts());
             ctx.sendBroadcast(i);
         } catch (MalformedURLException e) {

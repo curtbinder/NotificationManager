@@ -1,9 +1,6 @@
 package info.curtbinder.notificationmanager;
 
-import android.net.wifi.ScanResult;
-
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by binder on 9/7/14.

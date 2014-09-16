@@ -6,16 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import java.util.ArrayList;
 
 
-public class Main extends Activity implements Button.OnClickListener {
+public class Main extends Activity {
 
     private static final String TAG = Main.class.getSimpleName();
     private NotificationReceiver receiver;
@@ -26,13 +23,8 @@ public class Main extends Activity implements Button.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         receiver = new NotificationReceiver();
-        filter = new IntentFilter(MessageCommands.GET_ALERTS);
-        Button b = (Button) findViewById(R.id.button_add);
-        b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.button_add_all);
-        b.setOnClickListener(this);
-        b = (Button) findViewById(R.id.button_cancel);
-        b.setOnClickListener(this);
+        filter = new IntentFilter(MessageCommands.UPDATE_DISPLAY_ALERTS);
+        filter.addAction(MessageCommands.RELOAD_ALERTS);
         getFragmentManager().beginTransaction()
                 .add(R.id.frag_container, NotificationListFragment.newInstance(null))
                 .commit();
@@ -79,31 +71,17 @@ public class Main extends Activity implements Button.OnClickListener {
         new UpdateTask().execute(getBaseContext());
     }
 
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        switch(id) {
-            case R.id.button_add:
-                break;
-            case R.id.button_add_all:
-                break;
-            case R.id.button_cancel:
-                break;
-        }
-    }
-
     private class NotificationReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if ( action.equals(MessageCommands.GET_ALERTS) ) {
+            if ( action.equals(MessageCommands.UPDATE_DISPLAY_ALERTS) ) {
                 ArrayList<Alert> alerts = (ArrayList)intent.getParcelableArrayListExtra(MessageCommands.MSG_ALERT);
-//                for (Alert a : alerts) {
-//                    Log.d(TAG, a.toString());
-//                }
                 RefreshInterface r = (RefreshInterface) getFragmentManager().findFragmentById(R.id.frag_container);
                 r.refreshList(alerts);
+            } else if ( action.equals(MessageCommands.RELOAD_ALERTS) ) {
+                getAlerts();
             }
         }
     }

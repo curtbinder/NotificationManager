@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     android:padding="@dimen/list_horizontal_margin">
 
-    <CheckBox
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/checkBox"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/placeholder_name"
+        android:id="@+id/textName"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -17,20 +19,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textName"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/checkBox"
-        android:layout_toEndOf="@+id/checkBox" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
+        android:text="@string/placeholder_description"
         android:id="@+id/textDescription"
-        android:layout_below="@+id/checkBox"
+        android:layout_below="@+id/textName"
         android:layout_alignLeft="@+id/textName"
         android:layout_alignStart="@+id/textName" />
 
@@ -38,11 +30,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="@string/placeholder_comparison"
         android:id="@+id/textComparison"
         android:layout_below="@+id/textDescription"
-        android:layout_toRightOf="@+id/checkBox"
-        android:layout_toEndOf="@+id/checkBox"
-        android:textStyle="bold" />
+        android:layout_alignLeft="@+id/textName"
+        android:layout_alignStart="@+id/textName" />
 
 </RelativeLayout>

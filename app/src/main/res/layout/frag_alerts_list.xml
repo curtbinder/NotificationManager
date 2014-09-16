@@ -4,7 +4,6 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,56 +13,19 @@
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/list_horizontal_margin"
         android:paddingRight="@dimen/list_horizontal_margin"
-        android:layout_weight="0" />
+        android:paddingTop="@dimen/list_horizontal_margin"/>
 
-    <FrameLayout
+    <ListView
+        android:id="@android:id/android:list"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:minHeight="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent" />
 
-        <ListView
-            android:id="@android:id/android:list"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@android:id/android:empty"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/no_alerts"
-            android:layout_marginLeft="@dimen/list_horizontal_margin"
-            android:layout_marginRight="@dimen/list_horizontal_margin" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@android:id/android:empty"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:orientation="horizontal"
-        android:layout_margin="@dimen/list_horizontal_margin">
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_cancel"
-            android:id="@+id/button_cancel" />
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_add_all"
-            android:id="@+id/button_add_all"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_add"
-            android:id="@+id/button_add" />
-
-    </LinearLayout>
+        android:text="@string/no_alerts"
+        android:layout_marginLeft="@dimen/list_horizontal_margin"
+        android:layout_marginRight="@dimen/list_horizontal_margin" />
 
 </LinearLayout>

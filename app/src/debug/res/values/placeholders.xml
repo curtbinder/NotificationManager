@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="placeholder_name">Name</string>
+    <string name="placeholder_description">Description</string>
+    <string name="placeholder_comparison">T1 >= 78</string>
+</resources>
