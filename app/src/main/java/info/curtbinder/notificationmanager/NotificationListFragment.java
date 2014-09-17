@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -33,6 +34,12 @@ public class NotificationListFragment extends ListFragment
     }
 
     public NotificationListFragment() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -89,6 +96,22 @@ public class NotificationListFragment extends ListFragment
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.list_items, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance();
+                dlg.show(getFragmentManager(), "dlg");
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

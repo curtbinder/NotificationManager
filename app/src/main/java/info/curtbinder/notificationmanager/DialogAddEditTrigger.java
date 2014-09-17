@@ -59,7 +59,6 @@ public class DialogAddEditTrigger extends DialogFragment
             alert = args.getParcelable(ALERT);  // get the alert, if it exists
         }
         updateDisplay();
-        Log.d(TAG, "onCreateView");
         return v;
     }
 
