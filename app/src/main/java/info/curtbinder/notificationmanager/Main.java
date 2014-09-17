@@ -6,10 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,14 +24,17 @@ public class Main extends Activity {
     private static final String TAG = Main.class.getSimpleName();
     private NotificationReceiver receiver;
     private IntentFilter filter;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
         receiver = new NotificationReceiver();
         filter = new IntentFilter(MessageCommands.UPDATE_DISPLAY_ALERTS);
         filter.addAction(MessageCommands.RELOAD_ALERTS);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         getFragmentManager().beginTransaction()
                 .add(R.id.frag_container, NotificationListFragment.newInstance(null))
                 .commit();
@@ -70,16 +77,46 @@ public class Main extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private String getUsername() {
+        return prefs.getString(getString(R.string.username_key), "");
+    }
+
+    private class UpdateTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            setProgressBarIndeterminateVisibility(true);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            setProgressBarIndeterminateVisibility(false);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String username = getUsername();
+            if (username.isEmpty()) {
+                // empty username
+                return null;
+            }
+            Host host = new Host(username);
+            CommTask t = new CommTask(getApplication().getBaseContext(), host);
+            t.run();
+            return null;
+        }
+    }
+
     private void getAlerts() {
         // run on background thread, not main thread
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        String username = prefs.getString(getString(R.string.username_key), "");
+        String username = getUsername();
         if (username.isEmpty()) {
             // empty username
             Toast.makeText(this, R.string.no_username_set, Toast.LENGTH_SHORT).show();
             return;
         }
-        new UpdateTask().execute(getBaseContext());
+        new UpdateTask().execute();
     }
 
     private class NotificationReceiver extends BroadcastReceiver {
