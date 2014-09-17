@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/message_alerts_from_portal"
-        android:id="@+id/textView"
+        android:id="@+id/textName"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/list_horizontal_margin"
         android:paddingRight="@dimen/list_horizontal_margin"

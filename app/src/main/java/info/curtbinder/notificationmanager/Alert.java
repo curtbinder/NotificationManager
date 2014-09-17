@@ -18,7 +18,7 @@ public class Alert implements Parcelable {
     private String alertDescription;
 
     public Alert(){
-        id = 0;
+        id = -1;
         paramName = "";
         paramDescription = "";
         comparison = 0;

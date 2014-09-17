@@ -6,11 +6,20 @@
     <string name="action_refresh">Refresh</string>
     <string name="no_alerts">No Notifications</string>
     <string name="message_alerts_from_portal">Notifications from the Portal:</string>
-    <string name="edit">Edit Notification</string>
-    <string name="delete">Delete Notification</string>
+    <string name="edit_notification">Edit Notification</string>
+    <string name="delete_notification">Delete Notification</string>
+    <string name="add_notification">Add Notification</string>
     <string name="username_key">username</string>
     <string name="username_title">Portal Username</string>
     <string name="no_username_set">No username set, canceled</string>
     <string name="general">General</string>
+    <string name="add">Add</string>
+    <string name="update">Update</string>
+    <string name="cancel">Cancel</string>
+    <string name="name">Name:</string>
+    <string name="description">Description:</string>
+    <string name="param">Parameter</string>
+    <string name="cond">Condition</string>
+    <string name="value">Value</string>
 
 </resources>

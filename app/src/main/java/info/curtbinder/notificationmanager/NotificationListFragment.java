@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
@@ -76,21 +77,41 @@ public class NotificationListFragment extends ListFragment
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()) {
             case R.id.edit_item:
-                Log.d(TAG, "Edit item");
-                reloadAlerts();
+//                Log.d(TAG, "  --> " + alerts.get(info.position).toString());
+                DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance(true, alerts.get(info.position));
+                dlg.show(getFragmentManager(), "dlg");
                 return true;
             case R.id.delete_item:
-                Log.d(TAG, "Delete item");
-                reloadAlerts();
+//                Log.d(TAG, "  --> " + alerts.get(info.position).toString());
                 return true;
         }
         return false;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO get the alert from the Intent data
+        switch (requestCode) {
+        }
+    }
+
     private void reloadAlerts() {
         Intent i = new Intent(MessageCommands.RELOAD_ALERTS);
         getActivity().sendBroadcast(i);
+    }
+
+    private void addNotification(Alert a) {
+        // TODO add the notification
+    }
+
+    private void editNotification(Alert a) {
+        // TODO edit the notification based on the id
+    }
+
+    private void deleteNotification(int id) {
+        // TODO delete the notification based on the id
     }
 }
