@@ -1,6 +1,8 @@
 package info.curtbinder.notificationmanager;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +25,7 @@ import java.util.ArrayList;
 public class Main extends Activity {
 
     private static final String TAG = Main.class.getSimpleName();
+    private static final String FTAG = "notifications";
     private NotificationReceiver receiver;
     private IntentFilter filter;
     SharedPreferences prefs;
@@ -35,10 +39,18 @@ public class Main extends Activity {
         filter = new IntentFilter(MessageCommands.UPDATE_DISPLAY_ALERTS);
         filter.addAction(MessageCommands.RELOAD_ALERTS);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        getFragmentManager().beginTransaction()
-                .add(R.id.frag_container, NotificationListFragment.newInstance(null))
-                .commit();
+        FragmentManager fm = getFragmentManager();
+        NotificationListFragment nlf = (NotificationListFragment) fm.findFragmentByTag(FTAG);
+        if ( nlf == null ) {
+            fm.beginTransaction()
+                    .add(R.id.frag_container, NotificationListFragment.newInstance(null), FTAG)
+                    .commit();
+        }
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 
     @Override

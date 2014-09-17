@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
@@ -21,6 +20,8 @@ public class NotificationListFragment extends ListFragment
         implements RefreshInterface {
 
     private static final String TAG = "List";
+
+    private ArrayList<Alert> alerts;
 
     public static NotificationListFragment newInstance ( ArrayList<Alert> alerts ) {
         NotificationListFragment f = new NotificationListFragment();
@@ -39,10 +40,20 @@ public class NotificationListFragment extends ListFragment
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(MessageCommands.MSG_ALERT, alerts);
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        if ( savedInstanceState != null ) {
+            alerts = savedInstanceState.getParcelableArrayList(MessageCommands.MSG_ALERT);
+        } else {
+            alerts = getArguments().getParcelableArrayList(MessageCommands.MSG_ALERT);
+        }
         // set the list adapter for our list
-        ArrayList<Alert> alerts = getArguments().getParcelableArrayList(MessageCommands.MSG_ALERT);
         NotificationListAdapter adapter = new NotificationListAdapter(getActivity().getBaseContext(), alerts);
         setListAdapter(adapter);
         registerForContextMenu(getListView());
@@ -50,6 +61,7 @@ public class NotificationListFragment extends ListFragment
 
     @Override
     public void refreshList(ArrayList<Alert> alerts) {
+        this.alerts = alerts;
         NotificationListAdapter adapter = (NotificationListAdapter) getListAdapter();
         adapter.setAlerts(alerts);
         adapter.notifyDataSetChanged();
