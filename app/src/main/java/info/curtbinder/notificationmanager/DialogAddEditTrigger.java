@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -101,7 +102,14 @@ public class DialogAddEditTrigger extends DialogFragment {
     }
 
     private void setAdapters() {
-        // TODO set adapters for the spinners
+        ArrayAdapter<CharSequence> arrayCondition = ArrayAdapter.createFromResource(getActivity(),
+                R.array.comparisonText, android.R.layout.simple_spinner_item);
+        arrayCondition.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinCond.setAdapter(arrayCondition);
+        ArrayAdapter<CharSequence> arrayParam = ArrayAdapter.createFromResource(getActivity(),
+                R.array.paramText, android.R.layout.simple_spinner_item);
+        arrayParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinParam.setAdapter(arrayParam);
     }
 
     private void updateAlert() {
@@ -109,5 +117,8 @@ public class DialogAddEditTrigger extends DialogFragment {
         alert.setAlertDescription(editDescription.getText().toString());
         alert.setValue(Integer.parseInt(editValue.getText().toString()));
         // TODO update the values stored in the spinners
+        int pos = spinCond.getSelectedItemPosition();
+        Log.d(TAG, "Condition: " + pos);
+        alert.setComparison(pos);
     }
 }
