@@ -99,6 +99,7 @@ public class DialogAddEditTrigger extends DialogFragment {
         editName.setText(alert.getAlertName());
         editDescription.setText(alert.getAlertDescription());
         editValue.setText("" + alert.getValue());
+        spinCond.setSelection(alert.getComparison());
     }
 
     private void setAdapters() {
