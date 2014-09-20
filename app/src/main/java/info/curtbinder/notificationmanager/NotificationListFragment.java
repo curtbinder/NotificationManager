@@ -1,5 +1,6 @@
 package info.curtbinder.notificationmanager;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -87,12 +88,12 @@ public class NotificationListFragment extends ListFragment
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         switch(item.getItemId()) {
             case R.id.edit_item:
-//                Log.d(TAG, "  --> " + alerts.get(info.position).toString());
                 DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance(alerts.get(info.position));
+                dlg.setTargetFragment(this, DialogAddEditTrigger.DLG_ADDEDIT_CALL);
                 dlg.show(getFragmentManager(), "dlg");
                 return true;
             case R.id.delete_item:
-//                Log.d(TAG, "  --> " + alerts.get(info.position).toString());
+                deleteNotification(info.position);
                 return true;
         }
         return false;
@@ -108,6 +109,7 @@ public class NotificationListFragment extends ListFragment
         switch (item.getItemId()) {
             case R.id.action_add:
                 DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance();
+                dlg.setTargetFragment(this, DialogAddEditTrigger.DLG_ADDEDIT_CALL);
                 dlg.show(getFragmentManager(), "dlg");
                 return true;
         }
@@ -116,8 +118,18 @@ public class NotificationListFragment extends ListFragment
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO get the alert from the Intent data
-        switch (requestCode) {
+        if ( (requestCode == DialogAddEditTrigger.DLG_ADDEDIT_CALL) &&
+                (resultCode == Activity.RESULT_OK) ) {
+            // User pressed the Add/Update button
+            if ( data != null ) {
+                Alert a = data.getParcelableExtra(DialogAddEditTrigger.ALERT);
+                int id = a.getId();
+                if ( id == -1 ) {
+                    addNotification(a);
+                } else {
+                    editNotification(a);
+                }
+            }
         }
     }
 
@@ -128,13 +140,20 @@ public class NotificationListFragment extends ListFragment
 
     private void addNotification(Alert a) {
         // TODO add the notification
+        Log.d(TAG, "Add Notification: " + a.toString());
+        // TODO need to encode the strings before sending them
+        //reloadAlerts();
     }
 
     private void editNotification(Alert a) {
         // TODO edit the notification based on the id
+        Log.d(TAG, "Edit Notification: " + a.toString());
+        //reloadAlerts();
     }
 
     private void deleteNotification(int id) {
         // TODO delete the notification based on the id
+        Log.d(TAG, "Delete Notification: " + id);
+        //reloadAlerts();
     }
 }

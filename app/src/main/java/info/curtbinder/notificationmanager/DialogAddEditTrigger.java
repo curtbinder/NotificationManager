@@ -20,8 +20,10 @@ import android.widget.Spinner;
  */
 public class DialogAddEditTrigger extends DialogFragment {
 
+    public static final int DLG_ADDEDIT_CALL = 1;
+    public static final String ALERT = "alert";
+
     private static final String TAG = DialogAddEditTrigger.class.getSimpleName();
-    private static final String ALERT = "alert";
     private Spinner spinParam;
     private Spinner spinCond;
     private EditText editName;
@@ -68,14 +70,10 @@ public class DialogAddEditTrigger extends DialogFragment {
                 .setPositiveButton(updateId, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        updateAlert();
                         Intent i = new Intent();
-                        if ( alert.getId() > -1 ) {
-                            Log.d(TAG, "Update button pressed");
-                        } else {
-                            Log.d(TAG, "Add button pressed");
-                        }
                         i.putExtra(ALERT, alert);
-                        //getTargetFragment().onActivityResult(getTargetRequestCode(),Activity.RESULT_OK, i);
+                        getTargetFragment().onActivityResult(getTargetRequestCode(),Activity.RESULT_OK, i);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -85,6 +83,14 @@ public class DialogAddEditTrigger extends DialogFragment {
                     }
                 });
         return builder.create();
+    }
+
+    private void findViews(View root) {
+        editName = (EditText) root.findViewById(R.id.editName);
+        editDescription = (EditText) root.findViewById(R.id.editDescription);
+        editValue = (EditText) root.findViewById(R.id.editValue);
+        spinParam = (Spinner) root.findViewById(R.id.spinParam);
+        spinCond = (Spinner) root.findViewById(R.id.spinCond);
     }
 
     private void updateDisplay() {
@@ -98,11 +104,10 @@ public class DialogAddEditTrigger extends DialogFragment {
         // TODO set adapters for the spinners
     }
 
-    private void findViews(View root) {
-        editName = (EditText) root.findViewById(R.id.editName);
-        editDescription = (EditText) root.findViewById(R.id.editDescription);
-        editValue = (EditText) root.findViewById(R.id.editValue);
-        spinParam = (Spinner) root.findViewById(R.id.spinParam);
-        spinCond = (Spinner) root.findViewById(R.id.spinCond);
+    private void updateAlert() {
+        alert.setAlertName(editName.getText().toString());
+        alert.setAlertDescription(editDescription.getText().toString());
+        alert.setValue(Integer.parseInt(editValue.getText().toString()));
+        // TODO update the values stored in the spinners
     }
 }
