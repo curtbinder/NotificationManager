@@ -88,7 +88,7 @@ public class NotificationListFragment extends ListFragment
         switch(item.getItemId()) {
             case R.id.edit_item:
 //                Log.d(TAG, "  --> " + alerts.get(info.position).toString());
-                DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance(true, alerts.get(info.position));
+                DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance(alerts.get(info.position));
                 dlg.show(getFragmentManager(), "dlg");
                 return true;
             case R.id.delete_item:
