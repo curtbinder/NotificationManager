@@ -10,30 +10,68 @@ import java.net.URLEncoder;
  */
 public class Host {
 
-    private static String GET_ALERTS = "http://forum.reefangel.com/status/alerts.aspx?id=";
+    public static final int GET = 0;
+    public static final int ADD = 1;
+    public static final int EDIT = 2;
+    public static final int DELETE = 3;
+
+    private static final String TAG = Host.class.getSimpleName();
+    private static final String BASE = "http://forum.reefangel.com/status/";
+    private static final String GET_ALERTS = BASE + "alerts.aspx?id=";
+    private static final String ADD_ALERTS = BASE + "submittriggers.aspx?id=";
     private String host;
     private String username;
+    private int type;
+    private Alert alert;
 
     public Host() {
         username = "";
+        type = GET;
+        alert = null;
     }
 
     public Host(String username) {
-        this.username = username;
+        super();
+        setUsername(username);
     }
 
     public void setUsername(String username) {
         this.username = username;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public void setAlert(Alert a) {
+        this.alert = a;
+    }
+
     @Override
     public String toString() {
         String encoded = "";
-        try {
-            encoded = URLEncoder.encode(username, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            Log.d("Host", "Failed to encode username: " + username);
+        String s = "";
+        switch (type) {
+            default:
+            case GET:
+                try {
+                    encoded = URLEncoder.encode(username, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    Log.d(TAG, "Failed to encode username: " + username);
+                }
+                s = GET_ALERTS + encoded;
+                break;
+            case ADD:
+                try {
+                    String url = username;
+                    encoded = URLEncoder.encode(url, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    Log.d(TAG, "Failed to encode");
+                }
+                s = ADD_ALERTS + encoded;
+                Log.d(TAG, "ADD: " + s);
+                break;
         }
-        return GET_ALERTS + encoded;
+        return s;
     }
 }
