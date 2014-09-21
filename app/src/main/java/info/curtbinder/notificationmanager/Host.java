@@ -18,7 +18,8 @@ public class Host {
     private static final String TAG = Host.class.getSimpleName();
     private static final String BASE = "http://forum.reefangel.com/status/";
     private static final String GET_ALERTS = BASE + "alerts.aspx?id=";
-    private static final String ADD_ALERTS = BASE + "submittriggers.aspx?id=";
+    private static final String UPDATE_ALERT = BASE + "submittriggers.aspx?id=";
+    private static final String DELETE_ALERT = BASE + "deletetriggers.aspx?id=";
     private String host;
     private String username;
     private int type;
@@ -68,8 +69,20 @@ public class Host {
                 } catch (UnsupportedEncodingException e) {
                     Log.d(TAG, "Failed to encode");
                 }
-                s = ADD_ALERTS + encoded;
+                s = UPDATE_ALERT + encoded;
                 Log.d(TAG, "ADD: " + s);
+                break;
+            case EDIT:
+                break;
+            case DELETE:
+                try {
+                    String url = username + "&triggerid=" + alert.getId();
+                    encoded = URLEncoder.encode(url, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    Log.d(TAG, "Failed to encode");
+                }
+                s = DELETE_ALERT + encoded;
+                Log.d(TAG, "DELETE: " + s);
                 break;
         }
         return s;

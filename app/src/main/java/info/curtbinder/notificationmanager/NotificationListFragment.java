@@ -29,7 +29,7 @@ public class NotificationListFragment extends ListFragment
     public static NotificationListFragment newInstance ( ArrayList<Alert> alerts ) {
         NotificationListFragment f = new NotificationListFragment();
         Bundle args = new Bundle();
-        args.putParcelableArrayList(MessageCommands.MSG_ALERT, alerts);
+        args.putParcelableArrayList(MessageCommands.MSG_ALERTS, alerts);
         f.setArguments(args);
         return f;
     }
@@ -51,16 +51,16 @@ public class NotificationListFragment extends ListFragment
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList(MessageCommands.MSG_ALERT, alerts);
+        outState.putParcelableArrayList(MessageCommands.MSG_ALERTS, alerts);
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if ( savedInstanceState != null ) {
-            alerts = savedInstanceState.getParcelableArrayList(MessageCommands.MSG_ALERT);
+            alerts = savedInstanceState.getParcelableArrayList(MessageCommands.MSG_ALERTS);
         } else {
-            alerts = getArguments().getParcelableArrayList(MessageCommands.MSG_ALERT);
+            alerts = getArguments().getParcelableArrayList(MessageCommands.MSG_ALERTS);
         }
         // set the list adapter for our list
         NotificationListAdapter adapter = new NotificationListAdapter(getActivity().getBaseContext(), alerts);
@@ -86,14 +86,15 @@ public class NotificationListFragment extends ListFragment
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        Alert a = alerts.get(info.position);
         switch(item.getItemId()) {
             case R.id.edit_item:
-                DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance(alerts.get(info.position));
+                DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance(a);
                 dlg.setTargetFragment(this, DialogAddEditTrigger.DLG_ADDEDIT_CALL);
                 dlg.show(getFragmentManager(), "dlg");
                 return true;
             case R.id.delete_item:
-                deleteNotification(info.position);
+                deleteNotification(a);
                 return true;
         }
         return false;
@@ -133,27 +134,22 @@ public class NotificationListFragment extends ListFragment
         }
     }
 
-    private void reloadAlerts() {
-        Intent i = new Intent(MessageCommands.RELOAD_ALERTS);
+    private void sendNotification(String action, int type, Alert a) {
+        Intent i = new Intent(action);
+        i.putExtra(MessageCommands.MSG_ALERT_DATA, a);
+        i.putExtra(MessageCommands.MSG_ALERT_TYPE, type);
         getActivity().sendBroadcast(i);
     }
 
     private void addNotification(Alert a) {
-        // TODO add the notification
-        Log.d(TAG, "Add Notification: " + a.toString());
-        // TODO need to encode the strings before sending them
-        //reloadAlerts();
+        sendNotification(MessageCommands.ADD_ALERT, Host.ADD, a);
     }
 
     private void editNotification(Alert a) {
-        // TODO edit the notification based on the id
-        Log.d(TAG, "Edit Notification: " + a.toString());
-        //reloadAlerts();
+        sendNotification(MessageCommands.UPDATE_ALERT, Host.EDIT, a);
     }
 
-    private void deleteNotification(int id) {
-        // TODO delete the notification based on the id
-        Log.d(TAG, "Delete Notification: " + id);
-        //reloadAlerts();
+    private void deleteNotification(Alert a) {
+        sendNotification(MessageCommands.DELETE_ALERT, Host.DELETE, a);
     }
 }

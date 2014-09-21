@@ -22,9 +22,11 @@ public class Main extends Activity {
 
     private static final String TAG = Main.class.getSimpleName();
     private static final String FTAG = "notifications";
+    SharedPreferences prefs;
+    Alert mAlert;
+    int mAlertType;
     private NotificationReceiver receiver;
     private IntentFilter filter;
-    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class Main extends Activity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         FragmentManager fm = getFragmentManager();
         NotificationListFragment nlf = (NotificationListFragment) fm.findFragmentByTag(FTAG);
-        if ( nlf == null ) {
+        if (nlf == null) {
             fm.beginTransaction()
                     .add(R.id.frag_container, NotificationListFragment.newInstance(null), FTAG)
                     .commit();
@@ -77,7 +79,7 @@ public class Main extends Activity {
         if (id == R.id.action_settings) {
             startActivity(new Intent(this, Settings.class));
             return true;
-        } else if ( id == R.id.action_refresh ) {
+        } else if (id == R.id.action_refresh) {
             // refresh the alerts
             getAlerts();
             return true;
@@ -87,6 +89,17 @@ public class Main extends Activity {
 
     private String getUsername() {
         return prefs.getString(getString(R.string.username_key), "");
+    }
+
+    private void getAlerts() {
+        // run on background thread, not main thread
+        String username = getUsername();
+        if (username.isEmpty()) {
+            // empty username
+            Toast.makeText(this, R.string.no_username_set, Toast.LENGTH_SHORT).show();
+            return;
+        }
+        new GetAlertsTask().execute();
     }
 
     private class GetAlertsTask extends AsyncTask<Void, Void, Void> {
@@ -116,29 +129,56 @@ public class Main extends Activity {
         }
     }
 
-    private void getAlerts() {
-        // run on background thread, not main thread
-        String username = getUsername();
-        if (username.isEmpty()) {
-            // empty username
-            Toast.makeText(this, R.string.no_username_set, Toast.LENGTH_SHORT).show();
-            return;
-        }
-        new GetAlertsTask().execute();
-    }
-
     private class NotificationReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if ( action.equals(MessageCommands.UPDATE_DISPLAY_ALERTS) ) {
-                ArrayList<Alert> alerts = (ArrayList)intent.getParcelableArrayListExtra(MessageCommands.MSG_ALERT);
+            if (action.equals(MessageCommands.UPDATE_DISPLAY_ALERTS)) {
+                ArrayList<Alert> alerts = (ArrayList) intent.getParcelableArrayListExtra(MessageCommands.MSG_ALERTS);
                 RefreshInterface r = (RefreshInterface) getFragmentManager().findFragmentById(R.id.frag_container);
                 r.refreshList(alerts);
-            } else if ( action.equals(MessageCommands.RELOAD_ALERTS) ) {
+            } else if (action.equals(MessageCommands.RELOAD_ALERTS)) {
                 getAlerts();
+            } else if (action.equals(MessageCommands.ADD_ALERT) ||
+                    action.equals(MessageCommands.UPDATE_ALERT) ||
+                    action.equals(MessageCommands.DELETE_ALERT)) {
+                mAlert = (Alert) intent.getParcelableExtra(MessageCommands.MSG_ALERT_DATA);
+                mAlertType = intent.getIntExtra(MessageCommands.MSG_ALERT_TYPE, Host.ADD);
+                new UpdateAlertTask().execute();
             }
+        }
+    }
+
+    private class UpdateAlertTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            setProgressBarIndeterminateVisibility(true);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            setProgressBarIndeterminateVisibility(false);
+            // reload the alerts
+            getAlerts();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            String username = getUsername();
+            if (username.isEmpty()) {
+                // empty username
+                return null;
+            }
+            Host host = new Host(username);
+            // set the host type
+            host.setType(mAlertType);
+            host.setAlert(mAlert);
+            CommTask t = new CommTask(getApplication().getBaseContext(), host);
+            t.run();
+            return null;
         }
     }
 }
