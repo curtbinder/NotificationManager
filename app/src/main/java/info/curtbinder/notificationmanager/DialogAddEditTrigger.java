@@ -16,9 +16,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathFactory;
 
 /**
  * Created by binder on 9/17/14.
@@ -69,6 +77,10 @@ public class DialogAddEditTrigger extends DialogFragment {
         } else {
             alert = args.getParcelable(ALERT);  // get the alert, if it exists
         }
+        try {
+            parseTriggers();
+        } catch (Exception e) {
+        }
         setAdapters();
         updateDisplay();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -113,10 +125,11 @@ public class DialogAddEditTrigger extends DialogFragment {
                 R.array.comparisonText, android.R.layout.simple_spinner_item);
         arrayCondition.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinCond.setAdapter(arrayCondition);
-//        ArrayAdapter<CharSequence> arrayParam = ArrayAdapter.createFromResource(getActivity(),
-//                R.array.paramText, android.R.layout.simple_spinner_item);
-//        arrayParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinParam.setAdapter(arrayParam);
+        ArrayAdapter<String> arrayParam = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, mTriggerDescription);
+        arrayParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinParam.setAdapter(arrayParam);
+
     }
 
     private void updateAlert() {
@@ -129,7 +142,33 @@ public class DialogAddEditTrigger extends DialogFragment {
         alert.setComparison(pos);
     }
 
-    private void parseTriggers() {
-
+    private void parseTriggers() throws Exception {
+        InputSource inputSource = new InputSource(getResources().openRawResource(R.raw.trigger_params));
+        XPath xpath = XPathFactory.newInstance().newXPath();
+        String exp = "triggers//trigger";
+        NodeList nodes = (NodeList) xpath.evaluate(exp, inputSource, XPathConstants.NODESET);
+        if (nodes != null && nodes.getLength() > 0) {
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node n = nodes.item(i);
+                NodeList children = n.getChildNodes();
+                String desc = "";
+                String name = "";
+                int id = 0;
+                for (int j = 0; j < children.getLength(); j++) {
+                    Node nc = children.item(j);
+                    String localName = nc.getLocalName();
+                    if (localName == null) continue;
+                    if ( localName.equals("description") ) {
+                        desc = nc.getTextContent();
+                    } else if ( localName.equals("id") ) {
+                        id = Integer.parseInt(nc.getTextContent());
+                    } else if ( localName.equals("name")) {
+                        name = nc.getTextContent();
+                    }
+                }
+                mTriggerDescription.add(desc);
+                mapTriggers.put(name, id);
+            }
+        }
     }
 }
