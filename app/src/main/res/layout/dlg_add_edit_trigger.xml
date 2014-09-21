@@ -11,126 +11,88 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <TableLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/list_horizontal_margin"
+            android:paddingRight="@dimen/list_horizontal_margin"
+            android:stretchColumns="1"
+            >
 
-            <TextView
-                android:id="@+id/textName"
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textName"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/name" />
+
+                <EditText
+                    android:id="@+id/editName" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textDescription"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/description" />
+
+                <EditText
+                    android:id="@+id/editDescription"
+                    android:ems="10"
+                    android:inputType="textMultiLine" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/param" />
+
+                <Spinner
+                    android:id="@+id/spinParam" />
+            </TableRow>
+
+
+            <TableRow
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="@dimen/list_horizontal_margin"
-                android:layout_marginRight="@dimen/list_horizontal_margin"
-                android:layout_marginTop="@dimen/list_horizontal_margin"
-                android:text="@string/name" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/editName"
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/cond" />
+
+                <Spinner
+                    android:id="@+id/spinCond" />
+            </TableRow>
+
+
+            <TableRow
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentTop="true"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginRight="@dimen/list_horizontal_margin"
-                android:layout_toEndOf="@+id/textDescription" />
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/textDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textName"
-                android:layout_alignStart="@+id/textName"
-                android:layout_below="@+id/editName"
-                android:layout_marginRight="@dimen/list_horizontal_margin"
-                android:layout_marginTop="@dimen/list_horizontal_margin"
-                android:text="@string/description" />
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/value" />
 
-            <EditText
-                android:id="@+id/editDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/editName"
-                android:layout_alignRight="@+id/editName"
-                android:layout_below="@+id/editName"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_toEndOf="@+id/textDescription"
-                android:layout_toRightOf="@+id/textDescription"
-                android:ems="10"
-                android:inputType="textMultiLine" />
+                <EditText
+                    android:id="@+id/editValue"
+                    android:ems="10"
+                    android:inputType="number" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/spinCond"
-                android:layout_alignLeft="@+id/textDescription"
-                android:layout_alignStart="@+id/textDescription"
-                android:layout_toStartOf="@+id/editDescription"
-                android:gravity="left"
-                android:text="@string/param" />
 
-            <Spinner
-                android:id="@+id/spinParam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/editDescription"
-                android:layout_alignRight="@+id/editDescription"
-                android:layout_below="@+id/editDescription"
-                android:layout_toRightOf="@+id/textView3"
-                android:layout_toStartOf="@+id/editDescription"
-                android:gravity="left" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/editValue"
-                android:layout_alignLeft="@+id/textView3"
-                android:layout_alignStart="@+id/textView3"
-                android:gravity="left"
-                android:text="@string/cond" />
-
-            <Spinner
-                android:id="@+id/spinCond"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/spinParam"
-                android:layout_alignLeft="@+id/spinParam"
-                android:layout_alignRight="@+id/spinParam"
-                android:layout_alignStart="@+id/spinParam"
-                android:layout_below="@+id/spinParam"
-                android:layout_toEndOf="@+id/textDescription"
-                android:layout_toStartOf="@+id/spinParam"
-                android:gravity="left" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/editValue"
-                android:layout_alignLeft="@+id/textView4"
-                android:layout_alignStart="@+id/textView4"
-                android:gravity="left"
-                android:text="@string/value" />
-
-            <EditText
-                android:id="@+id/editValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/spinCond"
-                android:layout_alignLeft="@+id/spinCond"
-                android:layout_alignRight="@+id/spinCond"
-                android:layout_alignStart="@+id/spinCond"
-                android:layout_below="@+id/spinCond"
-                android:layout_toEndOf="@+id/textDescription"
-                android:ems="10"
-                android:gravity="right"
-                android:inputType="number" />
-
-        </RelativeLayout>
+        </TableLayout>
     </ScrollView>
 </LinearLayout>
