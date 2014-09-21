@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<triggers>
+    <trigger>
+        <id>1</id>
+        <name>T1</name>
+        <description>Temperature 1</description>
+    </trigger>
+    <trigger>
+        <id>2</id>
+        <name>T2</name>
+        <description>Temperature 2</description>
+    </trigger>
+    <trigger>
+        <id>3</id>
+        <name>T3</name>
+        <description>Temperature 3</description>
+    </trigger>
+    <trigger>
+        <id>4</id>
+        <name>PH</name>
+        <description>pH</description>
+    </trigger>
+    <trigger>
+        <id>5</id>
+        <name>SAL</name>
+        <description>Salinity</description>
+    </trigger>
+    <trigger>
+        <id>6</id>
+        <name>ORP</name>
+        <description>ORP</description>
+    </trigger>
+    <trigger>
+        <id>7</id>
+        <name>ATOHIGH</name>
+        <description>ATO High Port</description>
+    </trigger>
+    <trigger>
+        <id>8</id>
+        <name>ATOLOW</name>
+        <description>ATO Low Port</description>
+    </trigger>
+    <trigger>
+        <id>9</id>
+        <name>PWMA</name>
+        <description>Actinic Dimming</description>
+    </trigger>
+    <trigger>
+        <id>10</id>
+        <name>PWMD</name>
+        <description>Daylight Dimming</description>
+    </trigger>
+    <trigger>
+        <id>38</id>
+        <name>PWME0</name>
+        <description>Dimming Expansion Channel 0</description>
+    </trigger>
+    <trigger>
+        <id>39</id>
+        <name>PWME1</name>
+        <description>Dimming Expansion Channel 1</description>
+    </trigger>
+    <trigger>
+        <id>40</id>
+        <name>PWME2</name>
+        <description>Dimming Expansion Channel 2</description>
+    </trigger>
+    <trigger>
+        <id>41</id>
+        <name>PWME3</name>
+        <description>Dimming Expansion Channel 3</description>
+    </trigger>
+    <trigger>
+        <id>42</id>
+        <name>PWME4</name>
+        <description>Dimming Expansion Channel 4</description>
+    </trigger>
+    <trigger>
+        <id>43</id>
+        <name>PWME5</name>
+        <description>Dimming Expansion Channel 5</description>
+    </trigger>
+    <trigger>
+        <id>44</id>
+        <name>AIW</name>
+        <description>AquaIllumination White Channel</description>
+    </trigger>
+    <trigger>
+        <id>45</id>
+        <name>AIB</name>
+        <description>AquaIllumination Blue Channel</description>
+    </trigger>
+    <trigger>
+        <id>46</id>
+        <name>AIRB</name>
+        <description>AquaIllumination Royal Blue Channel</description>
+    </trigger>
+    <trigger>
+        <id>47</id>
+        <name>RFM</name>
+        <description>Vortech Mode</description>
+    </trigger>
+    <trigger>
+        <id>48</id>
+        <name>RFS</name>
+        <description>Vortech Speed</description>
+    </trigger>
+    <trigger>
+        <id>49</id>
+        <name>RFD</name>
+        <description>Vortech Duration</description>
+    </trigger>
+    <trigger>
+        <id>50</id>
+        <name>RFW</name>
+        <description>Radion White Channel</description>
+    </trigger>
+    <trigger>
+        <id>51</id>
+        <name>RFRB</name>
+        <description>Radion Royal Blue Channel</description>
+    </trigger>
+    <trigger>
+        <id>52</id>
+        <name>RFR</name>
+        <description>Radion Red Channel</description>
+    </trigger>
+    <trigger>
+        <id>53</id>
+        <name>RFG</name>
+        <description>Radion Green Channel</description>
+    </trigger>
+    <trigger>
+        <id>54</id>
+        <name>RFB</name>
+        <description>Radion Blue Channel</description>
+    </trigger>
+    <trigger>
+        <id>55</id>
+        <name>RFI</name>
+        <description>Radion Intensity Channel</description>
+    </trigger>
+    <trigger>
+        <id>57</id>
+        <name>C0</name>
+        <description>Custom Variable 0</description>
+    </trigger>
+    <trigger>
+        <id>58</id>
+        <name>C1</name>
+        <description>Custom Variable 1</description>
+    </trigger>
+    <trigger>
+        <id>59</id>
+        <name>C2</name>
+        <description>Custom Variable 2</description>
+    </trigger>
+    <trigger>
+        <id>60</id>
+        <name>C3</name>
+        <description>Custom Variable 3</description>
+    </trigger>
+    <trigger>
+        <id>61</id>
+        <name>C4</name>
+        <description>Custom Variable 4</description>
+    </trigger>
+    <trigger>
+        <id>62</id>
+        <name>C5</name>
+        <description>Custom Variable 5</description>
+    </trigger>
+    <trigger>
+        <id>63</id>
+        <name>C6</name>
+        <description>Custom Variable 6</description>
+    </trigger>
+    <trigger>
+        <id>64</id>
+        <name>C7</name>
+        <description>Custom Variable 7</description>
+    </trigger>
+    <trigger>
+        <id>65</id>
+        <name>PHE</name>
+        <description>pH Expansion</description>
+    </trigger>
+    <trigger>
+        <id>66</id>
+        <name>WL</name>
+        <description>Water Level Channel 0</description>
+    </trigger>
+    <trigger>
+        <id>67</id>
+        <name>HUM</name>
+        <description>Humidity</description>
+    </trigger>
+    <trigger>
+        <id>68</id>
+        <name>DCM</name>
+        <description>DC Pump Mode</description>
+    </trigger>
+    <trigger>
+        <id>69</id>
+        <name>DCS</name>
+        <description>DC Pump Speed</description>
+    </trigger>
+    <trigger>
+        <id>70</id>
+        <name>DCD</name>
+        <description>DC Pump Duration</description>
+    </trigger>
+    <trigger>
+        <id>72</id>
+        <name>WL1</name>
+        <description>Water Level Channel 1</description>
+    </trigger>
+    <trigger>
+        <id>73</id>
+        <name>WL2</name>
+        <description>Water Level Channel 2</description>
+    </trigger>
+    <trigger>
+        <id>74</id>
+        <name>WL3</name>
+        <description>Water Level Channel 3</description>
+    </trigger>
+    <trigger>
+        <id>75</id>
+        <name>WL4</name>
+        <description>Water Level Channel 4</description>
+    </trigger>
+    <trigger>
+        <id>96</id>
+        <name>ALARM</name>
+        <description>Alarm Port</description>
+    </trigger>
+    <trigger>
+        <id>97</id>
+        <name>PWMA2</name>
+        <description>Actinic 2 Dimming</description>
+    </trigger>
+    <trigger>
+        <id>98</id>
+        <name>PWMD2</name>
+        <description>Daylight 2 Dimming</description>
+    </trigger>
+    <trigger>
+        <id>102</id>
+        <name>PAR</name>
+        <description>PAR Expansion</description>
+    </trigger>
+    <trigger>
+        <id>11</id>
+        <name>R</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>14</id>
+        <name>R1</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>17</id>
+        <name>R2</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>20</id>
+        <name>R3</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>23</id>
+        <name>R4</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>26</id>
+        <name>R5</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>29</id>
+        <name>R6</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>32</id>
+        <name>R7</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>35</id>
+        <name>R8</name>
+        <description></description>
+    </trigger>
+    <trigger>
+        <id>93</id>
+        <name>AF</name>
+        <description>Alert Flags</description>
+    </trigger>
+</triggers>

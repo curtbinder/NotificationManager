@@ -16,6 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by binder on 9/17/14.
  */
@@ -31,6 +35,8 @@ public class DialogAddEditTrigger extends DialogFragment {
     private EditText editDescription;
     private EditText editValue;
     private Alert alert;
+    private ArrayList<String> mTriggerDescription = new ArrayList<String>();
+    private Map<String, Integer> mapTriggers = new HashMap<String, Integer>();
 
     public DialogAddEditTrigger() {
     }
@@ -107,10 +113,10 @@ public class DialogAddEditTrigger extends DialogFragment {
                 R.array.comparisonText, android.R.layout.simple_spinner_item);
         arrayCondition.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinCond.setAdapter(arrayCondition);
-        ArrayAdapter<CharSequence> arrayParam = ArrayAdapter.createFromResource(getActivity(),
-                R.array.paramText, android.R.layout.simple_spinner_item);
-        arrayParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinParam.setAdapter(arrayParam);
+//        ArrayAdapter<CharSequence> arrayParam = ArrayAdapter.createFromResource(getActivity(),
+//                R.array.paramText, android.R.layout.simple_spinner_item);
+//        arrayParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinParam.setAdapter(arrayParam);
     }
 
     private void updateAlert() {
@@ -121,5 +127,9 @@ public class DialogAddEditTrigger extends DialogFragment {
         int pos = spinCond.getSelectedItemPosition();
         Log.d(TAG, "Condition: " + pos);
         alert.setComparison(pos);
+    }
+
+    private void parseTriggers() {
+
     }
 }
