@@ -19,7 +19,8 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.xml.xpath.XPath;
@@ -42,7 +43,7 @@ public class DialogAddEditTrigger extends DialogFragment {
     private EditText editValue;
     private Alert alert;
     private ArrayList<String> mTriggerDescription = new ArrayList<String>();
-    private Map<String, Integer> mapTriggers = new HashMap<String, Integer>();
+    private Map<String, Integer> mapTriggers = new LinkedHashMap<String, Integer>();
 
     public DialogAddEditTrigger() {
     }
@@ -116,6 +117,10 @@ public class DialogAddEditTrigger extends DialogFragment {
         editDescription.setText(alert.getAlertDescription());
         editValue.setText("" + alert.getValue());
         spinCond.setSelection(alert.getComparison());
+        String param = alert.getParamName();
+        int pos = findKeyPosition(param);
+        //Log.d(TAG, "Found " + param + " at position: " + pos);
+        spinParam.setSelection(pos);
     }
 
     private void setAdapters() {
@@ -127,17 +132,21 @@ public class DialogAddEditTrigger extends DialogFragment {
                 android.R.layout.simple_list_item_1, mTriggerDescription);
         arrayParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinParam.setAdapter(arrayParam);
-
     }
 
     private void updateAlert() {
         alert.setAlertName(editName.getText().toString());
         alert.setAlertDescription(editDescription.getText().toString());
         alert.setValue(Integer.parseInt(editValue.getText().toString()));
-        // TODO update the values stored in the spinners
         int pos = spinCond.getSelectedItemPosition();
-        Log.d(TAG, "Condition: " + pos);
+        //Log.d(TAG, "Condition: " + pos);
         alert.setComparison(pos);
+        pos = spinParam.getSelectedItemPosition();
+        String description = (String) spinParam.getSelectedItem();
+        String name = findPositionKey(pos);
+        //Log.d(TAG, "Update: " + pos + ": " + description + " - " + name);
+        alert.setParamName(name);
+        alert.setParamDescription(description);
     }
 
     private void parseTriggers() throws Exception {
@@ -168,5 +177,39 @@ public class DialogAddEditTrigger extends DialogFragment {
                 mapTriggers.put(name, id);
             }
         }
+    }
+
+    private int findKeyPosition(String key) {
+        // Get the position based on the key
+        Iterator<String> i = mapTriggers.keySet().iterator();
+        int count = 0;
+        boolean fFound = false;
+        while(i.hasNext()) {
+            String iKey = i.next();
+            //Log.d(TAG, count + ": " + iKey);
+            if ( key.equals(iKey) ) {
+                fFound = true;
+                break;
+            }
+            count++;
+        }
+        return (fFound) ? count : 0;
+    }
+
+    private String findPositionKey(int pos) {
+        // Get the key based on the position in the list
+        Iterator<String> i = mapTriggers.keySet().iterator();
+        int count = 0;
+        String sValue = "";
+        while(i.hasNext()) {
+            String iKey = i.next();
+            //Log.d(TAG, count + ": " + iKey);
+            if ( pos == count ) {
+                sValue = iKey;
+                break;
+            }
+            count++;
+        }
+        return sValue;
     }
 }
