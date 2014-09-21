@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,15 +25,15 @@ public class NotificationListFragment extends ListFragment
 
     private ArrayList<Alert> alerts;
 
-    public static NotificationListFragment newInstance ( ArrayList<Alert> alerts ) {
+    public NotificationListFragment() {
+    }
+
+    public static NotificationListFragment newInstance(ArrayList<Alert> alerts) {
         NotificationListFragment f = new NotificationListFragment();
         Bundle args = new Bundle();
         args.putParcelableArrayList(MessageCommands.MSG_ALERTS, alerts);
         f.setArguments(args);
         return f;
-    }
-
-    public NotificationListFragment() {
     }
 
     @Override
@@ -57,7 +56,7 @@ public class NotificationListFragment extends ListFragment
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if ( savedInstanceState != null ) {
+        if (savedInstanceState != null) {
             alerts = savedInstanceState.getParcelableArrayList(MessageCommands.MSG_ALERTS);
         } else {
             alerts = getArguments().getParcelableArrayList(MessageCommands.MSG_ALERTS);
@@ -87,7 +86,7 @@ public class NotificationListFragment extends ListFragment
     public boolean onContextItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         Alert a = alerts.get(info.position);
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.edit_item:
                 DialogAddEditTrigger dlg = DialogAddEditTrigger.newInstance(a);
                 dlg.setTargetFragment(this, DialogAddEditTrigger.DLG_ADDEDIT_CALL);
@@ -119,16 +118,16 @@ public class NotificationListFragment extends ListFragment
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if ( (requestCode == DialogAddEditTrigger.DLG_ADDEDIT_CALL) &&
-                (resultCode == Activity.RESULT_OK) ) {
+        if ((requestCode == DialogAddEditTrigger.DLG_ADDEDIT_CALL) &&
+                (resultCode == Activity.RESULT_OK)) {
             // User pressed the Add/Update button
-            if ( data != null ) {
+            if (data != null) {
                 Alert a = data.getParcelableExtra(DialogAddEditTrigger.ALERT);
                 int id = a.getId();
-                if ( id == -1 ) {
+                if (id == -1) {
                     addNotification(a);
                 } else {
-                    editNotification(a);
+                    updateNotification(a);
                 }
             }
         }
@@ -145,8 +144,8 @@ public class NotificationListFragment extends ListFragment
         sendNotification(MessageCommands.ADD_ALERT, Host.ADD, a);
     }
 
-    private void editNotification(Alert a) {
-        sendNotification(MessageCommands.UPDATE_ALERT, Host.EDIT, a);
+    private void updateNotification(Alert a) {
+        sendNotification(MessageCommands.UPDATE_ALERT, Host.UPDATE, a);
     }
 
     private void deleteNotification(Alert a) {

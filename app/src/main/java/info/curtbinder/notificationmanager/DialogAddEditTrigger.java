@@ -7,7 +7,6 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -69,7 +68,7 @@ public class DialogAddEditTrigger extends DialogFragment {
         alert = null;
         int titleId = R.string.edit_notification;
         int updateId = R.string.update;
-        if ( args == null ) {
+        if (args == null) {
             alert = new Alert();
             titleId = R.string.add_notification;
             updateId = R.string.add;
@@ -91,7 +90,7 @@ public class DialogAddEditTrigger extends DialogFragment {
                         updateAlert();
                         Intent i = new Intent();
                         i.putExtra(ALERT, alert);
-                        getTargetFragment().onActivityResult(getTargetRequestCode(),Activity.RESULT_OK, i);
+                        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -165,11 +164,11 @@ public class DialogAddEditTrigger extends DialogFragment {
                     Node nc = children.item(j);
                     String localName = nc.getLocalName();
                     if (localName == null) continue;
-                    if ( localName.equals("description") ) {
+                    if (localName.equals("description")) {
                         desc = nc.getTextContent();
-                    } else if ( localName.equals("id") ) {
+                    } else if (localName.equals("id")) {
                         id = Integer.parseInt(nc.getTextContent());
-                    } else if ( localName.equals("name")) {
+                    } else if (localName.equals("name")) {
                         name = nc.getTextContent();
                     }
                 }
@@ -184,10 +183,10 @@ public class DialogAddEditTrigger extends DialogFragment {
         Iterator<String> i = mapTriggers.keySet().iterator();
         int count = 0;
         boolean fFound = false;
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             String iKey = i.next();
             //Log.d(TAG, count + ": " + iKey);
-            if ( key.equals(iKey) ) {
+            if (key.equals(iKey)) {
                 fFound = true;
                 break;
             }
@@ -201,10 +200,10 @@ public class DialogAddEditTrigger extends DialogFragment {
         Iterator<String> i = mapTriggers.keySet().iterator();
         int count = 0;
         String sValue = "";
-        while(i.hasNext()) {
+        while (i.hasNext()) {
             String iKey = i.next();
             //Log.d(TAG, count + ": " + iKey);
-            if ( pos == count ) {
+            if (pos == count) {
                 sValue = iKey;
                 break;
             }

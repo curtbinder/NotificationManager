@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -33,9 +34,7 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
-        receiver = new NotificationReceiver();
-        filter = new IntentFilter(MessageCommands.UPDATE_DISPLAY_ALERTS);
-        filter.addAction(MessageCommands.RELOAD_ALERTS);
+        createMessageReceiverAndFilter();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         FragmentManager fm = getFragmentManager();
         NotificationListFragment nlf = (NotificationListFragment) fm.findFragmentByTag(FTAG);
@@ -44,6 +43,15 @@ public class Main extends Activity {
                     .add(R.id.frag_container, NotificationListFragment.newInstance(null), FTAG)
                     .commit();
         }
+    }
+
+    private void createMessageReceiverAndFilter() {
+        receiver = new NotificationReceiver();
+        filter = new IntentFilter(MessageCommands.UPDATE_DISPLAY_ALERTS);
+        filter.addAction(MessageCommands.RELOAD_ALERTS);
+        filter.addAction(MessageCommands.ADD_ALERT);
+        filter.addAction(MessageCommands.UPDATE_ALERT);
+        filter.addAction(MessageCommands.DELETE_ALERT);
     }
 
     @Override
@@ -176,9 +184,11 @@ public class Main extends Activity {
             // set the host type
             host.setType(mAlertType);
             host.setAlert(mAlert);
-            CommTask t = new CommTask(getApplication().getBaseContext(), host);
-            t.run();
+            Log.d("UpdateAlert", "update alert task: " + host.toString());
             return null;
+//            CommTask t = new CommTask(getApplication().getBaseContext(), host);
+//            t.run();
+//            return null;
         }
     }
 }

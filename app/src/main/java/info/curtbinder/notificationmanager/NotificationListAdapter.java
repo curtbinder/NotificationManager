@@ -28,7 +28,7 @@ public class NotificationListAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        if ( alerts == null ) return 0;
+        if (alerts == null) return 0;
         return alerts.size();
     }
 
@@ -53,10 +53,10 @@ public class NotificationListAdapter extends BaseAdapter {
         Alert a = alerts.get(i);
         String name = a.getAlertName();
         String pName = a.getParamName();
-        if ( name.equals("null") ) name = pName;
+        if (name.equals("null")) name = pName;
         tv1.setText(name);
         String description = a.getAlertDescription();
-        if ( description.equals("null") ) description = a.getParamDescription();
+        if (description.equals("null")) description = a.getParamDescription();
         tv2.setText(description);
         // ParamName Comparision Value
         int c = a.getComparison();

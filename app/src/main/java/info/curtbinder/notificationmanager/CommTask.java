@@ -51,7 +51,7 @@ public class CommTask implements Runnable {
             response.body().close();
             // send message to main thread with the data
             Intent i = new Intent(MessageCommands.UPDATE_DISPLAY_ALERTS);
-            i.putParcelableArrayListExtra("ALERTS", (ArrayList)xml.getAlerts());
+            i.putParcelableArrayListExtra("ALERTS", (ArrayList) xml.getAlerts());
             ctx.sendBroadcast(i);
         } catch (MalformedURLException e) {
             e.printStackTrace();

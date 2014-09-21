@@ -8,6 +8,18 @@ import android.os.Parcelable;
  */
 public class Alert implements Parcelable {
 
+    public static Creator<Alert> CREATOR = new Creator<Alert>() {
+        @Override
+        public Alert createFromParcel(Parcel parcel) {
+            return new Alert(parcel);
+        }
+
+        @Override
+        public Alert[] newArray(int i) {
+            return new Alert[i];
+        }
+    };
+    // TODO add in trigger - need to confirm this value...associated with paramName
     private int id;
     private String paramName;
     private String paramDescription;
@@ -17,7 +29,7 @@ public class Alert implements Parcelable {
     private String alertName;
     private String alertDescription;
 
-    public Alert(){
+    public Alert() {
         id = -1;
         paramName = "";
         paramDescription = "";
@@ -26,6 +38,42 @@ public class Alert implements Parcelable {
         lastAlert = "never";
         alertName = "New Alert";
         alertDescription = "Description of the Alert";
+    }
+
+    public Alert(Parcel in) {
+        id = in.readInt();
+        paramName = in.readString();
+        paramDescription = in.readString();
+        comparison = in.readInt();
+        value = in.readInt();
+        lastAlert = in.readString();
+        alertName = in.readString();
+        alertDescription = in.readString();
+    }
+
+    public static String getComparisonString(int comparison) {
+        String s = "";
+        switch (comparison) {
+            case 0:
+                s = "<=";
+                break;
+            case 1:
+                s = "<";
+                break;
+            case 2:
+                s = "=";
+                break;
+            case 3:
+                s = ">";
+                break;
+            case 4:
+                s = ">=";
+                break;
+            default:
+                s = "!";
+                break;
+        }
+        return s;
     }
 
     public int getId() {
@@ -50,31 +98,6 @@ public class Alert implements Parcelable {
 
     public void setParamDescription(String paramDescription) {
         this.paramDescription = paramDescription;
-    }
-
-    public static String getComparisonString(int comparison) {
-        String s = "";
-        switch ( comparison ) {
-            case 0:
-                s = "<=";
-                break;
-            case 1:
-                s = "<";
-                break;
-            case 2:
-                s = "=";
-                break;
-            case 3:
-                s = ">";
-                break;
-            case 4:
-                s = ">=";
-                break;
-            default:
-                s = "!";
-                break;
-        }
-        return s;
     }
 
     public int getComparison() {
@@ -117,6 +140,20 @@ public class Alert implements Parcelable {
         this.alertDescription = alertDescription;
     }
 
+    public String getAddString() {
+        // TODO add in missing fields
+        return "&comparison=" + comparison + "&triggervalue=" + value;
+    }
+
+    public String getUpdateString() {
+        // TODO add in missing fields
+        return "&triggerid=" + id + "&comparison=" + comparison + "&triggervalue=" + value;
+    }
+
+    public String getDeleteString() {
+        return "&triggerid=" + id;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -133,29 +170,6 @@ public class Alert implements Parcelable {
         out.writeString(alertName);
         out.writeString(alertDescription);
     }
-
-    public Alert(Parcel in) {
-        id = in.readInt();
-        paramName = in.readString();
-        paramDescription = in.readString();
-        comparison = in.readInt();
-        value = in.readInt();
-        lastAlert = in.readString();
-        alertName = in.readString();
-        alertDescription = in.readString();
-    }
-
-    public static Creator<Alert> CREATOR = new Creator<Alert>() {
-        @Override
-        public Alert createFromParcel(Parcel parcel) {
-            return new Alert(parcel);
-        }
-
-        @Override
-        public Alert[] newArray(int i) {
-            return new Alert[i];
-        }
-    };
 
     public String toString() {
         final StringBuilder sb = new StringBuilder();

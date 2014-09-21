@@ -12,15 +12,15 @@ public class Host {
 
     public static final int GET = 0;
     public static final int ADD = 1;
-    public static final int EDIT = 2;
+    public static final int UPDATE = 2;
     public static final int DELETE = 3;
 
     private static final String TAG = Host.class.getSimpleName();
     private static final String BASE = "http://forum.reefangel.com/status/";
-    private static final String GET_ALERTS = BASE + "alerts.aspx?id=";
-    private static final String UPDATE_ALERT = BASE + "submittriggers.aspx?id=";
-    private static final String DELETE_ALERT = BASE + "deletetriggers.aspx?id=";
-    private String host;
+    private static final String GET_ALERTS = "alerts.aspx?id=";
+    private static final String UPDATE_ALERT = "submittriggers.aspx?id=";
+    private static final String DELETE_ALERT = "deletetriggers.aspx?id=";
+    //    private String host;
     private String username;
     private int type;
     private Alert alert;
@@ -51,40 +51,33 @@ public class Host {
     @Override
     public String toString() {
         String encoded = "";
-        String s = "";
+        String prefix = "";
+        String suffix = "";
         switch (type) {
             default:
             case GET:
-                try {
-                    encoded = URLEncoder.encode(username, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    Log.d(TAG, "Failed to encode username: " + username);
-                }
-                s = GET_ALERTS + encoded;
+                prefix = GET_ALERTS;
                 break;
             case ADD:
-                try {
-                    String url = username;
-                    encoded = URLEncoder.encode(url, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    Log.d(TAG, "Failed to encode");
-                }
-                s = UPDATE_ALERT + encoded;
-                Log.d(TAG, "ADD: " + s);
+                prefix = UPDATE_ALERT;
+                suffix = alert.getAddString();
                 break;
-            case EDIT:
+            case UPDATE:
+                prefix = UPDATE_ALERT;
+                suffix = alert.getUpdateString();
                 break;
             case DELETE:
-                try {
-                    String url = username + "&triggerid=" + alert.getId();
-                    encoded = URLEncoder.encode(url, "UTF-8");
-                } catch (UnsupportedEncodingException e) {
-                    Log.d(TAG, "Failed to encode");
-                }
-                s = DELETE_ALERT + encoded;
-                Log.d(TAG, "DELETE: " + s);
+                prefix = DELETE_ALERT;
+                suffix = alert.getDeleteString();
                 break;
         }
-        return s;
+        try {
+            encoded = URLEncoder.encode(username, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            Log.d(TAG, "Failed to encode: " + username);
+            return "";
+        }
+        Log.d(TAG, "Encoded URL: " + BASE + prefix + encoded + suffix);
+        return BASE + prefix + encoded + suffix;
     }
 }

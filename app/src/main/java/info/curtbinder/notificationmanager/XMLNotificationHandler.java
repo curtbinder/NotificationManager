@@ -30,12 +30,12 @@ public class XMLNotificationHandler extends DefaultHandler {
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
         String tag;
-        if ( !qName.equals("") ) {
+        if (!qName.equals("")) {
             tag = qName;
         } else {
             tag = localName;
         }
-        if ( tag.equals(XMLNotificationTags.ALERTS) ) {
+        if (tag.equals(XMLNotificationTags.ALERTS)) {
             currentAlert = new Alert();
         }
     }
@@ -43,12 +43,12 @@ public class XMLNotificationHandler extends DefaultHandler {
     @Override
     public void endElement(String uri, String localName, String qName) throws SAXException {
         String tag;
-        if ( !qName.equals("") ) {
+        if (!qName.equals("")) {
             tag = qName;
         } else {
             tag = localName;
         }
-        if ( tag.equals(XMLNotificationTags.ALERTS) ) {
+        if (tag.equals(XMLNotificationTags.ALERTS)) {
             alerts.add(currentAlert);
             currentAlert = null;
         } else {
@@ -64,23 +64,23 @@ public class XMLNotificationHandler extends DefaultHandler {
     }
 
     private void processNotification(String tag) {
-        if ( tag.equals(XMLNotificationTags.ID) ) {
+        if (tag.equals(XMLNotificationTags.ID)) {
             currentAlert.setId(Integer.parseInt(currentElement));
-        } else if ( tag.equals(XMLNotificationTags.NAME) ) {
+        } else if (tag.equals(XMLNotificationTags.NAME)) {
             currentAlert.setParamName(currentElement);
-        } else if ( tag.equals(XMLNotificationTags.DESCRIPTION) ) {
+        } else if (tag.equals(XMLNotificationTags.DESCRIPTION)) {
             currentAlert.setParamDescription(currentElement);
-        } else if ( tag.equals(XMLNotificationTags.COMPARISON) ) {
+        } else if (tag.equals(XMLNotificationTags.COMPARISON)) {
             currentAlert.setComparison(Integer.parseInt(currentElement));
-        } else if ( tag.equals(XMLNotificationTags.VALUE) ) {
+        } else if (tag.equals(XMLNotificationTags.VALUE)) {
             currentAlert.setValue(Integer.parseInt(currentElement));
-        } else if ( tag.equals(XMLNotificationTags.LASTALERT) ) {
+        } else if (tag.equals(XMLNotificationTags.LASTALERT)) {
             currentAlert.setLastAlert(currentElement);
-        } else if ( tag.equals(XMLNotificationTags.ALERT_NAME) ) {
+        } else if (tag.equals(XMLNotificationTags.ALERT_NAME)) {
             currentAlert.setAlertName(currentElement);
-        } else if ( tag.equals(XMLNotificationTags.ALERT_DESCRIPTION) ) {
+        } else if (tag.equals(XMLNotificationTags.ALERT_DESCRIPTION)) {
             currentAlert.setAlertDescription(currentElement);
-        } else if ( tag.equals(XMLNotificationTags.RA)) {
+        } else if (tag.equals(XMLNotificationTags.RA)) {
         } else {
             Log.d(TAG, "Unknown tag: " + tag + ": " + currentElement);
         }
