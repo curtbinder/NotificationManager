@@ -104,6 +104,10 @@ public class Main extends Activity {
             // refresh the alerts
             getAlerts();
             return true;
+        } else if (id == R.id.action_about) {
+            DialogAbout a = DialogAbout.newInstance();
+            a.show(getFragmentManager(), "dlgabout");
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
