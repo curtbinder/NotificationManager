@@ -40,11 +40,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/placeholder_last"
-        android:id="@+id/textLast"
+        android:text="@string/last_sent"
+        android:id="@+id/textViewLastTitle"
         android:layout_below="@+id/textComparison"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:textStyle="italic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/last_sent"
+        android:id="@+id/textLast"
+        android:textStyle="italic"
+        android:layout_toEndOf="@+id/textViewLastTitle"
+        android:layout_alignTop="@+id/textViewLastTitle"
+        android:layout_toRightOf="@+id/textViewLastTitle"
+        android:layout_marginLeft="@dimen/list_horizontal_margin" />
 
 </RelativeLayout>

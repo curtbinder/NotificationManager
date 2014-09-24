@@ -64,7 +64,7 @@ public class NotificationListAdapter extends BaseAdapter {
         int v = a.getValue();
         String s = String.format("%s %s %d", pName, Alert.getComparisonString(c), v);
         tv3.setText(s);
-        tv4.setText("Last Sent: " + a.getLastAlert());
+        tv4.setText(a.getLastAlert());
         return row;
     }
 }

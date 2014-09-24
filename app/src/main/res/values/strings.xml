@@ -21,5 +21,6 @@
     <string name="param">Parameter</string>
     <string name="cond">Condition</string>
     <string name="value">Value</string>
+    <string name="last_sent">Last Sent:</string>
 
 </resources>
