@@ -3,4 +3,5 @@
     <string name="placeholder_name"></string>
     <string name="placeholder_description"></string>
     <string name="placeholder_comparison"></string>
+    <string name="placeholder_last"></string>
 </resources>

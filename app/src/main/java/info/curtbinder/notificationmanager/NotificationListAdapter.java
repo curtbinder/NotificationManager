@@ -50,6 +50,7 @@ public class NotificationListAdapter extends BaseAdapter {
         TextView tv1 = (TextView) row.findViewById(R.id.textName);
         TextView tv2 = (TextView) row.findViewById(R.id.textDescription);
         TextView tv3 = (TextView) row.findViewById(R.id.textComparison);
+        TextView tv4 = (TextView) row.findViewById(R.id.textLast);
         Alert a = alerts.get(i);
         String name = a.getAlertName();
         String pName = a.getParamName();
@@ -63,6 +64,7 @@ public class NotificationListAdapter extends BaseAdapter {
         int v = a.getValue();
         String s = String.format("%s %s %d", pName, Alert.getComparisonString(c), v);
         tv3.setText(s);
+        tv4.setText("Last Sent: " + a.getLastAlert());
         return row;
     }
 }

@@ -3,4 +3,5 @@
     <string name="placeholder_name">Name</string>
     <string name="placeholder_description">Description</string>
     <string name="placeholder_comparison">T1 >= 78</string>
+    <string name="placeholder_last">Last Sent: 09/14/2014 12:08:12 AM</string>
 </resources>
