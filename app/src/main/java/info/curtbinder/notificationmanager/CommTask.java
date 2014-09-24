@@ -49,7 +49,6 @@ public class CommTask implements Runnable {
             if ( r.equals("Done") ) {
                 // we got a positive response from our update
                 i.setAction(MessageCommands.SERVER_RESPONSE);
-                // TODO Construct resposne string
                 String msg;
                 int p1Id;
                 String fmt = ctx.getString(R.string.success_msg);
