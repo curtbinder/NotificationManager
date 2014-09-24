@@ -59,10 +59,10 @@ public class NotificationListAdapter extends BaseAdapter {
         String description = a.getAlertDescription();
         if (description.equals("null")) description = a.getParamDescription();
         tv2.setText(description);
-        // ParamName Comparision Value
+        // ParamDescription Comparision Value
         int c = a.getComparison();
         int v = a.getValue();
-        String s = String.format("%s %s %d", pName, Alert.getComparisonString(c), v);
+        String s = String.format("%s %s %d", a.getParamDescription(), Alert.getComparisonString(c), v);
         tv3.setText(s);
         tv4.setText(a.getLastAlert());
         return row;
