@@ -16,13 +16,6 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
 
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.Response;
-
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -33,15 +26,16 @@ public class Main extends Activity {
     SharedPreferences prefs;
     Alert mAlert;
     int mAlertType;
-    public String xmlTriggers;
     private NotificationReceiver receiver;
     private IntentFilter filter;
+    private BaseApplication ba;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
+        ba = (BaseApplication) getApplication();
         createMessageReceiverAndFilter();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         FragmentManager fm = getFragmentManager();
@@ -51,7 +45,12 @@ public class Main extends Activity {
                     .add(R.id.frag_container, NotificationListFragment.newInstance(null), FTAG)
                     .commit();
         }
-        new DownloadTriggersTask().execute();
+        //new DownloadTriggersTask().execute();
+        try {
+            ba.parseTriggersResource(R.raw.specialtags, "RA//TAG");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void createMessageReceiverAndFilter() {
@@ -201,8 +200,9 @@ public class Main extends Activity {
         }
     }
 
+    /*
     private class DownloadTriggersTask extends AsyncTask<Void, Void, Void> {
-
+        // TODO class fails to download full XML response
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -213,7 +213,6 @@ public class Main extends Activity {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             setProgressBarIndeterminateVisibility(false);
-            Log.d(TAG, "Triggers: " + xmlTriggers);
         }
 
         @Override
@@ -224,14 +223,18 @@ public class Main extends Activity {
                 OkHttpClient client = new OkHttpClient();
                 Request request = new Request.Builder().url(url).build();
                 Response response = client.newCall(request).execute();
-                xmlTriggers = response.body().string();
+                ResponseBody body = response.body();
+                ba.parseTriggersString(body.charStream());
                 response.body().close();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             return null;
         }
     }
+    */
 }

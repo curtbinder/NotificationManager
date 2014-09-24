@@ -13,19 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
-
 /**
  * Created by binder on 9/17/14.
  */
@@ -41,8 +28,7 @@ public class DialogAddEditTrigger extends DialogFragment {
     private EditText editDescription;
     private EditText editValue;
     private Alert alert;
-    private ArrayList<String> mTriggerDescription = new ArrayList<String>();
-    private Map<String, Integer> mapTriggers = new LinkedHashMap<String, Integer>();
+    private BaseApplication ba;
 
     public DialogAddEditTrigger() {
     }
@@ -61,6 +47,7 @@ public class DialogAddEditTrigger extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        ba = (BaseApplication) getActivity().getApplication();
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View v = inflater.inflate(R.layout.dlg_add_edit_trigger, null);
         findViews(v);
@@ -74,10 +61,6 @@ public class DialogAddEditTrigger extends DialogFragment {
             updateId = R.string.add;
         } else {
             alert = args.getParcelable(ALERT);  // get the alert, if it exists
-        }
-        try {
-            parseTriggers();
-        } catch (Exception e) {
         }
         setAdapters();
         updateDisplay();
@@ -117,7 +100,7 @@ public class DialogAddEditTrigger extends DialogFragment {
         editValue.setText("" + alert.getValue());
         spinCond.setSelection(alert.getComparison());
         String param = alert.getParamName();
-        int pos = findKeyPosition(param);
+        int pos = ba.findKeyPosition(param);
         //Log.d(TAG, "Found " + param + " at position: " + pos);
         spinParam.setSelection(pos);
     }
@@ -128,7 +111,7 @@ public class DialogAddEditTrigger extends DialogFragment {
         arrayCondition.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinCond.setAdapter(arrayCondition);
         ArrayAdapter<String> arrayParam = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, mTriggerDescription);
+                android.R.layout.simple_list_item_1, ba.mTriggerDescription);
         arrayParam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinParam.setAdapter(arrayParam);
     }
@@ -142,74 +125,9 @@ public class DialogAddEditTrigger extends DialogFragment {
         alert.setComparison(pos);
         pos = spinParam.getSelectedItemPosition();
         String description = (String) spinParam.getSelectedItem();
-        String name = findPositionKey(pos);
+        String name = ba.findPositionKey(pos);
         //Log.d(TAG, "Update: " + pos + ": " + description + " - " + name);
         alert.setParamName(name);
         alert.setParamDescription(description);
-    }
-
-    private void parseTriggers() throws Exception {
-        // TODO get the xml from the parent activity OR load it from a file downloaded
-        InputSource inputSource = new InputSource(getResources().openRawResource(R.raw.trigger_params));
-        XPath xpath = XPathFactory.newInstance().newXPath();
-        String exp = "triggers//trigger";
-        NodeList nodes = (NodeList) xpath.evaluate(exp, inputSource, XPathConstants.NODESET);
-        if (nodes != null && nodes.getLength() > 0) {
-            for (int i = 0; i < nodes.getLength(); i++) {
-                Node n = nodes.item(i);
-                NodeList children = n.getChildNodes();
-                String desc = "";
-                String name = "";
-                int id = 0;
-                for (int j = 0; j < children.getLength(); j++) {
-                    Node nc = children.item(j);
-                    String localName = nc.getLocalName();
-                    if (localName == null) continue;
-                    if (localName.equals("description")) {
-                        desc = nc.getTextContent();
-                    } else if (localName.equals("id")) {
-                        id = Integer.parseInt(nc.getTextContent());
-                    } else if (localName.equals("name")) {
-                        name = nc.getTextContent();
-                    }
-                }
-                mTriggerDescription.add(desc);
-                mapTriggers.put(name, id);
-            }
-        }
-    }
-
-    private int findKeyPosition(String key) {
-        // Get the position based on the key
-        Iterator<String> i = mapTriggers.keySet().iterator();
-        int count = 0;
-        boolean fFound = false;
-        while (i.hasNext()) {
-            String iKey = i.next();
-            //Log.d(TAG, count + ": " + iKey);
-            if (key.equals(iKey)) {
-                fFound = true;
-                break;
-            }
-            count++;
-        }
-        return (fFound) ? count : 0;
-    }
-
-    private String findPositionKey(int pos) {
-        // Get the key based on the position in the list
-        Iterator<String> i = mapTriggers.keySet().iterator();
-        int count = 0;
-        String sValue = "";
-        while (i.hasNext()) {
-            String iKey = i.next();
-            //Log.d(TAG, count + ": " + iKey);
-            if (pos == count) {
-                sValue = iKey;
-                break;
-            }
-            count++;
-        }
-        return sValue;
     }
 }

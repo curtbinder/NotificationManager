@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RA>
+  <TAG>
+    <ID>1</ID>
+    <NAME>T1</NAME>
+    <DESCRIPTION>Temperature 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>2</ID>
+    <NAME>T2</NAME>
+    <DESCRIPTION>Temperature 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>3</ID>
+    <NAME>T3</NAME>
+    <DESCRIPTION>Temperature 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>4</ID>
+    <NAME>PH</NAME>
+    <DESCRIPTION>pH</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>5</ID>
+    <NAME>SAL</NAME>
+    <DESCRIPTION>Salinity</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>6</ID>
+    <NAME>ORP</NAME>
+    <DESCRIPTION>ORP</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>7</ID>
+    <NAME>ATOHIGH</NAME>
+    <DESCRIPTION>ATO High Port</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>8</ID>
+    <NAME>ATOLOW</NAME>
+    <DESCRIPTION>ATO Low Port</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>9</ID>
+    <NAME>PWMA</NAME>
+    <DESCRIPTION>Actinic Dimming</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>10</ID>
+    <NAME>PWMD</NAME>
+    <DESCRIPTION>Daylight Dimming</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>38</ID>
+    <NAME>PWME0</NAME>
+    <DESCRIPTION>Dimming Expansion Channel 0</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>39</ID>
+    <NAME>PWME1</NAME>
+    <DESCRIPTION>Dimming Expansion Channel 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>40</ID>
+    <NAME>PWME2</NAME>
+    <DESCRIPTION>Dimming Expansion Channel 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>41</ID>
+    <NAME>PWME3</NAME>
+    <DESCRIPTION>Dimming Expansion Channel 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>42</ID>
+    <NAME>PWME4</NAME>
+    <DESCRIPTION>Dimming Expansion Channel 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>43</ID>
+    <NAME>PWME5</NAME>
+    <DESCRIPTION>Dimming Expansion Channel 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>44</ID>
+    <NAME>AIW</NAME>
+    <DESCRIPTION>AquaIllumination White Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>45</ID>
+    <NAME>AIB</NAME>
+    <DESCRIPTION>AquaIllumination Blue Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>46</ID>
+    <NAME>AIRB</NAME>
+    <DESCRIPTION>AquaIllumination Royal Blue Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>47</ID>
+    <NAME>RFM</NAME>
+    <DESCRIPTION>Vortech Mode</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>48</ID>
+    <NAME>RFS</NAME>
+    <DESCRIPTION>Vortech Speed</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>49</ID>
+    <NAME>RFD</NAME>
+    <DESCRIPTION>Vortech Duration</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>50</ID>
+    <NAME>RFW</NAME>
+    <DESCRIPTION>Radion White Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>51</ID>
+    <NAME>RFRB</NAME>
+    <DESCRIPTION>Radion Royal Blue Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>52</ID>
+    <NAME>RFR</NAME>
+    <DESCRIPTION>Radion Red Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>53</ID>
+    <NAME>RFG</NAME>
+    <DESCRIPTION>Radion Green Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>54</ID>
+    <NAME>RFB</NAME>
+    <DESCRIPTION>Radion Blue Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>55</ID>
+    <NAME>RFI</NAME>
+    <DESCRIPTION>Radion Intensity Channel</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>57</ID>
+    <NAME>C0</NAME>
+    <DESCRIPTION>Custom Variable 0</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>58</ID>
+    <NAME>C1</NAME>
+    <DESCRIPTION>Custom Variable 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>59</ID>
+    <NAME>C2</NAME>
+    <DESCRIPTION>Custom Variable 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>60</ID>
+    <NAME>C3</NAME>
+    <DESCRIPTION>Custom Variable 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>61</ID>
+    <NAME>C4</NAME>
+    <DESCRIPTION>Custom Variable 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>62</ID>
+    <NAME>C5</NAME>
+    <DESCRIPTION>Custom Variable 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>63</ID>
+    <NAME>C6</NAME>
+    <DESCRIPTION>Custom Variable 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>64</ID>
+    <NAME>C7</NAME>
+    <DESCRIPTION>Custom Variable 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>65</ID>
+    <NAME>PHE</NAME>
+    <DESCRIPTION>pH Expansion</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>66</ID>
+    <NAME>WL</NAME>
+    <DESCRIPTION>Water Level Channel 0</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>67</ID>
+    <NAME>HUM</NAME>
+    <DESCRIPTION>Humidity</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>68</ID>
+    <NAME>DCM</NAME>
+    <DESCRIPTION>DC Pump Mode</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>69</ID>
+    <NAME>DCS</NAME>
+    <DESCRIPTION>DC Pump Speed</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>70</ID>
+    <NAME>DCD</NAME>
+    <DESCRIPTION>DC Pump Duration</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>72</ID>
+    <NAME>WL1</NAME>
+    <DESCRIPTION>Water Level Channel 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>73</ID>
+    <NAME>WL2</NAME>
+    <DESCRIPTION>Water Level Channel 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>74</ID>
+    <NAME>WL3</NAME>
+    <DESCRIPTION>Water Level Channel 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>75</ID>
+    <NAME>WL4</NAME>
+    <DESCRIPTION>Water Level Channel 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>96</ID>
+    <NAME>ALARM</NAME>
+    <DESCRIPTION>Alarm Port </DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>97</ID>
+    <NAME>PWMA2</NAME>
+    <DESCRIPTION>Actinic 2 Dimming</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>98</ID>
+    <NAME>PWMD2</NAME>
+    <DESCRIPTION>Daylight 2 Dimming</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>102</ID>
+    <NAME>PAR</NAME>
+    <DESCRIPTION>PAR Expansion</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1001</ID>
+    <NAME>R&amp;1</NAME>
+    <DESCRIPTION>Main Relay Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1002</ID>
+    <NAME>R&amp;2</NAME>
+    <DESCRIPTION>Main Relay Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1003</ID>
+    <NAME>R&amp;4</NAME>
+    <DESCRIPTION>Main Relay Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1004</ID>
+    <NAME>R&amp;8</NAME>
+    <DESCRIPTION>Main Relay Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1005</ID>
+    <NAME>R&amp;16</NAME>
+    <DESCRIPTION>Main Relay Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1006</ID>
+    <NAME>R&amp;32</NAME>
+    <DESCRIPTION>Main Relay Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1007</ID>
+    <NAME>R&amp;64</NAME>
+    <DESCRIPTION>Main Relay Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1008</ID>
+    <NAME>R&amp;128</NAME>
+    <DESCRIPTION>Main Relay Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1009</ID>
+    <NAME>R1&amp;1</NAME>
+    <DESCRIPTION>Expansion Relay Box 1 Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1010</ID>
+    <NAME>R1&amp;2</NAME>
+    <DESCRIPTION>Expansion Relay Box 1 Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1011</ID>
+    <NAME>R1&amp;4</NAME>
+    <DESCRIPTION>Expansion Relay Box 1 Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1012</ID>
+    <NAME>R1&amp;8</NAME>
+    <DESCRIPTION>Expansion Relay Box 1 Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1013</ID>
+    <NAME>R1&amp;16</NAME>
+    <DESCRIPTION>Expansion Relay Box 1 Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1014</ID>
+    <NAME>R1&amp;32</NAME>
+    <DESCRIPTION>Expansion Relay Box 1 Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1015</ID>
+    <NAME>R1&amp;64</NAME>
+    <DESCRIPTION>Expansion Relay Box 1 Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1016</ID>
+    <NAME>R1&amp;128</NAME>
+    <DESCRIPTION>Expansion Relay Box 1 Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1017</ID>
+    <NAME>R2&amp;1</NAME>
+    <DESCRIPTION>Expansion Relay Box 2 Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1018</ID>
+    <NAME>R2&amp;2</NAME>
+    <DESCRIPTION>Expansion Relay Box 2 Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1019</ID>
+    <NAME>R2&amp;4</NAME>
+    <DESCRIPTION>Expansion Relay Box 2 Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1020</ID>
+    <NAME>R2&amp;8</NAME>
+    <DESCRIPTION>Expansion Relay Box 2 Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1021</ID>
+    <NAME>R2&amp;16</NAME>
+    <DESCRIPTION>Expansion Relay Box 2 Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1022</ID>
+    <NAME>R2&amp;32</NAME>
+    <DESCRIPTION>Expansion Relay Box 2 Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1023</ID>
+    <NAME>R2&amp;64</NAME>
+    <DESCRIPTION>Expansion Relay Box 2 Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1024</ID>
+    <NAME>R2&amp;128</NAME>
+    <DESCRIPTION>Expansion Relay Box 2 Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1025</ID>
+    <NAME>R3&amp;1</NAME>
+    <DESCRIPTION>Expansion Relay Box 3 Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1026</ID>
+    <NAME>R3&amp;2</NAME>
+    <DESCRIPTION>Expansion Relay Box 3 Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1027</ID>
+    <NAME>R3&amp;4</NAME>
+    <DESCRIPTION>Expansion Relay Box 3 Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1028</ID>
+    <NAME>R3&amp;8</NAME>
+    <DESCRIPTION>Expansion Relay Box 3 Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1029</ID>
+    <NAME>R3&amp;16</NAME>
+    <DESCRIPTION>Expansion Relay Box 3 Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1030</ID>
+    <NAME>R3&amp;32</NAME>
+    <DESCRIPTION>Expansion Relay Box 3 Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1031</ID>
+    <NAME>R3&amp;64</NAME>
+    <DESCRIPTION>Expansion Relay Box 3 Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1032</ID>
+    <NAME>R3&amp;128</NAME>
+    <DESCRIPTION>Expansion Relay Box 3 Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1033</ID>
+    <NAME>R4&amp;1</NAME>
+    <DESCRIPTION>Expansion Relay Box 4 Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1034</ID>
+    <NAME>R4&amp;2</NAME>
+    <DESCRIPTION>Expansion Relay Box 4 Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1035</ID>
+    <NAME>R4&amp;4</NAME>
+    <DESCRIPTION>Expansion Relay Box 4 Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1036</ID>
+    <NAME>R4&amp;8</NAME>
+    <DESCRIPTION>Expansion Relay Box 4 Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1037</ID>
+    <NAME>R4&amp;16</NAME>
+    <DESCRIPTION>Expansion Relay Box 4 Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1038</ID>
+    <NAME>R4&amp;32</NAME>
+    <DESCRIPTION>Expansion Relay Box 4 Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1039</ID>
+    <NAME>R4&amp;64</NAME>
+    <DESCRIPTION>Expansion Relay Box 4 Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1040</ID>
+    <NAME>R4&amp;128</NAME>
+    <DESCRIPTION>Expansion Relay Box 4 Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1041</ID>
+    <NAME>R5&amp;1</NAME>
+    <DESCRIPTION>Expansion Relay Box 5 Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1042</ID>
+    <NAME>R5&amp;2</NAME>
+    <DESCRIPTION>Expansion Relay Box 5 Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1043</ID>
+    <NAME>R5&amp;4</NAME>
+    <DESCRIPTION>Expansion Relay Box 5 Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1044</ID>
+    <NAME>R5&amp;8</NAME>
+    <DESCRIPTION>Expansion Relay Box 5 Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1045</ID>
+    <NAME>R5&amp;16</NAME>
+    <DESCRIPTION>Expansion Relay Box 5 Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1046</ID>
+    <NAME>R5&amp;32</NAME>
+    <DESCRIPTION>Expansion Relay Box 5 Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1047</ID>
+    <NAME>R5&amp;64</NAME>
+    <DESCRIPTION>Expansion Relay Box 5 Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1048</ID>
+    <NAME>R5&amp;128</NAME>
+    <DESCRIPTION>Expansion Relay Box 5 Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1049</ID>
+    <NAME>R6&amp;1</NAME>
+    <DESCRIPTION>Expansion Relay Box 6 Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1050</ID>
+    <NAME>R6&amp;2</NAME>
+    <DESCRIPTION>Expansion Relay Box 6 Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1051</ID>
+    <NAME>R6&amp;4</NAME>
+    <DESCRIPTION>Expansion Relay Box 6 Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1052</ID>
+    <NAME>R6&amp;8</NAME>
+    <DESCRIPTION>Expansion Relay Box 6 Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1053</ID>
+    <NAME>R6&amp;16</NAME>
+    <DESCRIPTION>Expansion Relay Box 6 Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1054</ID>
+    <NAME>R6&amp;32</NAME>
+    <DESCRIPTION>Expansion Relay Box 6 Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1055</ID>
+    <NAME>R6&amp;64</NAME>
+    <DESCRIPTION>Expansion Relay Box 6 Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1056</ID>
+    <NAME>R6&amp;128</NAME>
+    <DESCRIPTION>Expansion Relay Box 6 Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1057</ID>
+    <NAME>R7&amp;1</NAME>
+    <DESCRIPTION>Expansion Relay Box 7 Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1058</ID>
+    <NAME>R7&amp;2</NAME>
+    <DESCRIPTION>Expansion Relay Box 7 Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1059</ID>
+    <NAME>R7&amp;4</NAME>
+    <DESCRIPTION>Expansion Relay Box 7 Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1060</ID>
+    <NAME>R7&amp;8</NAME>
+    <DESCRIPTION>Expansion Relay Box 7 Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1061</ID>
+    <NAME>R7&amp;16</NAME>
+    <DESCRIPTION>Expansion Relay Box 7 Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1062</ID>
+    <NAME>R7&amp;32</NAME>
+    <DESCRIPTION>Expansion Relay Box 7 Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1063</ID>
+    <NAME>R7&amp;64</NAME>
+    <DESCRIPTION>Expansion Relay Box 7 Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1064</ID>
+    <NAME>R7&amp;128</NAME>
+    <DESCRIPTION>Expansion Relay Box 7 Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1065</ID>
+    <NAME>R8&amp;1</NAME>
+    <DESCRIPTION>Expansion Relay Box 8 Port 1</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1066</ID>
+    <NAME>R8&amp;2</NAME>
+    <DESCRIPTION>Expansion Relay Box 8 Port 2</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1067</ID>
+    <NAME>R8&amp;4</NAME>
+    <DESCRIPTION>Expansion Relay Box 8 Port 3</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1068</ID>
+    <NAME>R8&amp;8</NAME>
+    <DESCRIPTION>Expansion Relay Box 8 Port 4</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1069</ID>
+    <NAME>R8&amp;16</NAME>
+    <DESCRIPTION>Expansion Relay Box 8 Port 5</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1070</ID>
+    <NAME>R8&amp;32</NAME>
+    <DESCRIPTION>Expansion Relay Box 8 Port 6</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1071</ID>
+    <NAME>R8&amp;64</NAME>
+    <DESCRIPTION>Expansion Relay Box 8 Port 7</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1072</ID>
+    <NAME>R8&amp;128</NAME>
+    <DESCRIPTION>Expansion Relay Box 8 Port 8</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1073</ID>
+    <NAME>AF&amp;1</NAME>
+    <DESCRIPTION>ATO Timeout Flag</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1074</ID>
+    <NAME>AF&amp;2</NAME>
+    <DESCRIPTION>Overheat Flag</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1075</ID>
+    <NAME>AF&amp;4</NAME>
+    <DESCRIPTION>Bus Lock Flag</DESCRIPTION>
+  </TAG>
+  <TAG>
+    <ID>1076</ID>
+    <NAME>AF&amp;8</NAME>
+    <DESCRIPTION>Water Leak Flag</DESCRIPTION>
+  </TAG>
+</RA>
