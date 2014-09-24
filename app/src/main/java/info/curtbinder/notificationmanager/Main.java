@@ -33,6 +33,7 @@ public class Main extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.setDefaultValues(this, R.xml.prefs, false);
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
         setContentView(R.layout.activity_main);
         ba = (BaseApplication) getApplication();
@@ -72,6 +73,9 @@ public class Main extends Activity {
     protected void onResume() {
         super.onResume();
         registerReceiver(receiver, filter);
+        if ( prefs.getBoolean(getString(R.string.autoload_key), false) ) {
+            getAlerts();
+        }
     }
 
     @Override

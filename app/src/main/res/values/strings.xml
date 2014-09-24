@@ -26,5 +26,8 @@
     <string name="added">added</string>
     <string name="updated">updated</string>
     <string name="deleted">deleted</string>
+    <string name="autoload_key">autoload</string>
+    <string name="autoload_title">Autoload</string>
+    <string name="autoload_summary">On app startup</string>
 
 </resources>

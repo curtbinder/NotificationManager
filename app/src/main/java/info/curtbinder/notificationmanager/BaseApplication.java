@@ -1,6 +1,7 @@
 package info.curtbinder.notificationmanager;
 
 import android.app.Application;
+import android.preference.PreferenceManager;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

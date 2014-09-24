@@ -5,6 +5,11 @@
         <EditTextPreference
             android:key="@string/username_key"
             android:title="@string/username_title" />
+        <CheckBoxPreference
+            android:key="@string/autoload_key"
+            android:title="@string/autoload_title"
+            android:summary="@string/autoload_summary"
+            android:defaultValue="false" />
     </PreferenceCategory>
 
 </PreferenceScreen>
