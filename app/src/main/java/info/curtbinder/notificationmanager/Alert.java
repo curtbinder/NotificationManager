@@ -175,7 +175,7 @@ public class Alert implements Parcelable {
     }
 
     public String getUpdateString() {
-        return "&triggerid=" + id + getComparisonAndValueStrings() + getAlertStrings();
+        return "&triggerid=" + id + getAddString();
     }
 
     public String getDeleteString() {

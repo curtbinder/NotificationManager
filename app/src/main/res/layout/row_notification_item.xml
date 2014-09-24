@@ -34,7 +34,9 @@
         android:id="@+id/textComparison"
         android:layout_below="@+id/textDescription"
         android:layout_alignLeft="@+id/textName"
-        android:layout_alignStart="@+id/textName" />
+        android:layout_alignStart="@+id/textName"
+        android:layout_marginTop="@dimen/list_horizontal_margin"
+        android:layout_marginBottom="@dimen/list_horizontal_margin" />
 
     <TextView
         android:layout_width="wrap_content"
