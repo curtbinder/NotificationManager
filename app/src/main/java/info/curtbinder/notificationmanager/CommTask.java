@@ -44,9 +44,6 @@ public class CommTask implements Runnable {
             SAXParserFactory spf = SAXParserFactory.newInstance();
             XMLReader xr = spf.newSAXParser().getXMLReader();
             xr.setContentHandler(xml);
-//            String s = response.body().string();
-//            Log.d("XML", s);
-//            xr.parse(new InputSource(new StringReader(s)));
             xr.parse(new InputSource(new StringReader(response.body().string())));
             response.body().close();
             // send message to main thread with the data
