@@ -3,6 +3,9 @@ package info.curtbinder.notificationmanager;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * Created by binder on 9/10/14.
  */
@@ -21,6 +24,7 @@ public class Alert implements Parcelable {
     };
     // TODO add in trigger - need to confirm this value...associated with paramName
     private int id;
+    private int paramId;
     private String paramName;
     private String paramDescription;
     private int comparison;
@@ -31,6 +35,7 @@ public class Alert implements Parcelable {
 
     public Alert() {
         id = -1;
+        paramId = 1;
         paramName = "";
         paramDescription = "";
         comparison = 0;
@@ -42,6 +47,7 @@ public class Alert implements Parcelable {
 
     public Alert(Parcel in) {
         id = in.readInt();
+        paramId = in.readInt();
         paramName = in.readString();
         paramDescription = in.readString();
         comparison = in.readInt();
@@ -82,6 +88,14 @@ public class Alert implements Parcelable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getParamId() {
+        return this.paramId;
+    }
+
+    public void setParamId(int paramId) {
+        this.paramId = paramId;
     }
 
     public String getParamName() {
@@ -140,14 +154,28 @@ public class Alert implements Parcelable {
         this.alertDescription = alertDescription;
     }
 
-    public String getAddString() {
-        // TODO add in missing fields
+    private String getAlertStrings() {
+        String encodedName, encodedDescription;
+        String s = "";
+        try {
+            encodedName = URLEncoder.encode(alertName, "UTF-8");
+            encodedDescription = URLEncoder.encode(alertDescription, "UTF-8");
+            s = "&alert_name=" + encodedName + "&alert_description=" + encodedDescription;
+        } catch (UnsupportedEncodingException e) {
+        }
+        return s;
+    }
+
+    private String getComparisonAndValueStrings() {
         return "&comparison=" + comparison + "&triggervalue=" + value;
     }
 
+    public String getAddString() {
+        return "&trigger=" + paramId + getComparisonAndValueStrings() + getAlertStrings();
+    }
+
     public String getUpdateString() {
-        // TODO add in missing fields
-        return "&triggerid=" + id + "&comparison=" + comparison + "&triggervalue=" + value;
+        return "&triggerid=" + id + getComparisonAndValueStrings() + getAlertStrings();
     }
 
     public String getDeleteString() {
@@ -162,6 +190,7 @@ public class Alert implements Parcelable {
     @Override
     public void writeToParcel(Parcel out, int i) {
         out.writeInt(id);
+        out.writeInt(paramId);
         out.writeString(paramName);
         out.writeString(paramDescription);
         out.writeInt(comparison);
@@ -174,7 +203,8 @@ public class Alert implements Parcelable {
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("Alert #").append(id);
-        sb.append(" - {ParamName: ").append(paramName);
+        sb.append(" - {ParamId: ").append(paramId);
+        sb.append(", ParamName: ").append(paramName);
         sb.append(", ParamDescription: ").append(paramDescription);
         sb.append(", Comparision: ").append(comparison).append(", Value: ").append(value);
         sb.append(", LastAlert: ").append(lastAlert).append(", Name: ").append(alertName);

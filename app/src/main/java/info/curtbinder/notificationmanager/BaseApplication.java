@@ -117,4 +117,8 @@ public class BaseApplication extends Application {
         }
         return sValue;
     }
+
+    public int getParamId(String key) {
+        return mapTriggers.get(key).intValue();
+    }
 }

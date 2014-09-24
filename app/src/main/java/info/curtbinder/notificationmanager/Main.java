@@ -192,11 +192,11 @@ public class Main extends Activity {
             // set the host type
             host.setType(mAlertType);
             host.setAlert(mAlert);
-            Log.d("UpdateAlert", "update alert task: " + host.toString());
-            return null;
-//            CommTask t = new CommTask(getApplication().getBaseContext(), host);
-//            t.run();
+//            Log.d("UpdateAlert", "update alert task: " + host.toString());
 //            return null;
+            CommTask t = new CommTask(getApplication().getBaseContext(), host);
+            t.run();
+            return null;
         }
     }
 

@@ -126,7 +126,9 @@ public class DialogAddEditTrigger extends DialogFragment {
         pos = spinParam.getSelectedItemPosition();
         String description = (String) spinParam.getSelectedItem();
         String name = ba.findPositionKey(pos);
-        //Log.d(TAG, "Update: " + pos + ": " + description + " - " + name);
+        int id = ba.getParamId(name);
+        //Log.d(TAG, "Update: " + id + ": " + description + " - " + name);
+        alert.setParamId(id);
         alert.setParamName(name);
         alert.setParamDescription(description);
     }
