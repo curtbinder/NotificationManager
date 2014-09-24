@@ -44,11 +44,36 @@ public class CommTask implements Runnable {
             SAXParserFactory spf = SAXParserFactory.newInstance();
             XMLReader xr = spf.newSAXParser().getXMLReader();
             xr.setContentHandler(xml);
-            xr.parse(new InputSource(new StringReader(response.body().string())));
+            String r = response.body().string();
+            Intent i = new Intent();
+            if ( r.equals("Done") ) {
+                // we got a positive response from our update
+                i.setAction(MessageCommands.SERVER_RESPONSE);
+                // TODO Construct resposne string
+                String msg;
+                int p1Id;
+                String fmt = ctx.getString(R.string.success_msg);
+                switch(host.getType()) {
+                    default:
+                    case Host.ADD:
+                        p1Id = R.string.added;
+                        break;
+                    case Host.UPDATE:
+                        p1Id = R.string.updated;
+                        break;
+                    case Host.DELETE:
+                        p1Id = R.string.deleted;
+                        break;
+                }
+                msg = String.format(fmt, ctx.getString(p1Id), host.getAlertName());
+                i.putExtra(MessageCommands.MSG_RESPONSE, msg);
+            } else {
+                xr.parse(new InputSource(new StringReader(r)));
+                i.setAction(MessageCommands.UPDATE_DISPLAY_ALERTS);
+                i.putParcelableArrayListExtra("ALERTS", (ArrayList) xml.getAlerts());
+            }
             response.body().close();
             // send message to main thread with the data
-            Intent i = new Intent(MessageCommands.UPDATE_DISPLAY_ALERTS);
-            i.putParcelableArrayListExtra("ALERTS", (ArrayList) xml.getAlerts());
             ctx.sendBroadcast(i);
         } catch (MalformedURLException e) {
             e.printStackTrace();

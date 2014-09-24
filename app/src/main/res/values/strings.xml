@@ -22,5 +22,9 @@
     <string name="cond">Condition</string>
     <string name="value">Value</string>
     <string name="last_sent">Last Sent:</string>
+    <string name="success_msg">Successfully %1$s: %2$s</string>
+    <string name="added">added</string>
+    <string name="updated">updated</string>
+    <string name="deleted">deleted</string>
 
 </resources>

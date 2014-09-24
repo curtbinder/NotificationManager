@@ -49,6 +49,14 @@ public class Host {
         this.alert = a;
     }
 
+    public int getType() {
+        return this.type;
+    }
+
+    public String getAlertName() {
+        return alert.getAlertName();
+    }
+
     @Override
     public String toString() {
         String encoded = "";
@@ -78,7 +86,7 @@ public class Host {
             Log.d(TAG, "Failed to encode: " + username);
             return "";
         }
-        Log.d(TAG, "Encoded URL: " + BASE + prefix + encoded + suffix);
+        //Log.d(TAG, "Encoded URL: " + BASE + prefix + encoded + suffix);
         return BASE + prefix + encoded + suffix;
     }
 }

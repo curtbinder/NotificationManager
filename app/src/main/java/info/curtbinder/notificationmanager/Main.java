@@ -60,6 +60,7 @@ public class Main extends Activity {
         filter.addAction(MessageCommands.ADD_ALERT);
         filter.addAction(MessageCommands.UPDATE_ALERT);
         filter.addAction(MessageCommands.DELETE_ALERT);
+        filter.addAction(MessageCommands.SERVER_RESPONSE);
     }
 
     @Override
@@ -156,6 +157,9 @@ public class Main extends Activity {
                 r.refreshList(alerts);
             } else if (action.equals(MessageCommands.RELOAD_ALERTS)) {
                 getAlerts();
+            } else if (action.equals(MessageCommands.SERVER_RESPONSE)) {
+                String response = intent.getStringExtra(MessageCommands.MSG_RESPONSE);
+                Toast.makeText(context, response, Toast.LENGTH_LONG).show();
             } else if (action.equals(MessageCommands.ADD_ALERT) ||
                     action.equals(MessageCommands.UPDATE_ALERT) ||
                     action.equals(MessageCommands.DELETE_ALERT)) {
@@ -192,8 +196,6 @@ public class Main extends Activity {
             // set the host type
             host.setType(mAlertType);
             host.setAlert(mAlert);
-//            Log.d("UpdateAlert", "update alert task: " + host.toString());
-//            return null;
             CommTask t = new CommTask(getApplication().getBaseContext(), host);
             t.run();
             return null;
