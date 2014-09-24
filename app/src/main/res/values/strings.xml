@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">NotificationManager</string>
+    <string name="app_name">Portal Notifications</string>
+    <string name="activity_name">Notifications</string>
     <string name="action_settings">Settings</string>
     <string name="action_refresh">Refresh</string>
     <string name="no_alerts">No Notifications</string>
-    <string name="message_alerts_from_portal">Notifications from the Portal:</string>
+    <string name="message_alerts_from_portal">Current Notifications:</string>
     <string name="edit_notification">Edit Notification</string>
     <string name="delete_notification">Delete Notification</string>
     <string name="add_notification">Add Notification</string>
-    <string name="username_key">username</string>
-    <string name="username_title">Portal Username</string>
     <string name="no_username_set">No username set, canceled</string>
     <string name="general">General</string>
     <string name="add">Add</string>
@@ -26,6 +25,9 @@
     <string name="added">added</string>
     <string name="updated">updated</string>
     <string name="deleted">deleted</string>
+
+    <string name="username_key">username</string>
+    <string name="username_title">Portal Username</string>
     <string name="autoload_key">autoload</string>
     <string name="autoload_title">Autoload</string>
     <string name="autoload_summary">On app startup</string>
