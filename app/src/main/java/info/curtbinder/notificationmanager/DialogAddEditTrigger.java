@@ -149,6 +149,7 @@ public class DialogAddEditTrigger extends DialogFragment {
     }
 
     private void parseTriggers() throws Exception {
+        // TODO get the xml from the parent activity OR load it from a file downloaded
         InputSource inputSource = new InputSource(getResources().openRawResource(R.raw.trigger_params));
         XPath xpath = XPathFactory.newInstance().newXPath();
         String exp = "triggers//trigger";

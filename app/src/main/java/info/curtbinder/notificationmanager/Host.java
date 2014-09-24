@@ -20,6 +20,8 @@ public class Host {
     private static final String GET_ALERTS = "alerts.aspx?id=";
     private static final String UPDATE_ALERT = "submittriggers.aspx?id=";
     private static final String DELETE_ALERT = "deletetriggers.aspx?id=";
+
+    public static final String TRIGGERS_URL = BASE + "specialtags.aspx";
     //    private String host;
     private String username;
     private int type;

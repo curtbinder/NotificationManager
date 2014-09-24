@@ -16,6 +16,13 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -26,6 +33,7 @@ public class Main extends Activity {
     SharedPreferences prefs;
     Alert mAlert;
     int mAlertType;
+    public String xmlTriggers;
     private NotificationReceiver receiver;
     private IntentFilter filter;
 
@@ -43,6 +51,7 @@ public class Main extends Activity {
                     .add(R.id.frag_container, NotificationListFragment.newInstance(null), FTAG)
                     .commit();
         }
+        new DownloadTriggersTask().execute();
     }
 
     private void createMessageReceiverAndFilter() {
@@ -189,6 +198,40 @@ public class Main extends Activity {
 //            CommTask t = new CommTask(getApplication().getBaseContext(), host);
 //            t.run();
 //            return null;
+        }
+    }
+
+    private class DownloadTriggersTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            setProgressBarIndeterminateVisibility(true);
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            setProgressBarIndeterminateVisibility(false);
+            Log.d(TAG, "Triggers: " + xmlTriggers);
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            URL url = null;
+            try {
+                url = new URL(Host.TRIGGERS_URL);
+                OkHttpClient client = new OkHttpClient();
+                Request request = new Request.Builder().url(url).build();
+                Response response = client.newCall(request).execute();
+                xmlTriggers = response.body().string();
+                response.body().close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 }
