@@ -25,19 +25,31 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    compileSdkVersion 20
+    buildToolsVersion '20.0.0'
     defaultConfig {
         applicationId "info.curtbinder.notificationmanager"
         minSdkVersion 15
-        targetSdkVersion 19
-        versionCode 1
+        targetSdkVersion 20
+        versionCode 2
         versionName "1.0"
     }
     buildTypes {
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                def file = variant.outputFile
+                def newName
+                // Put the version and build numbers in the filename
+                newName = file.name.replace(".apk", "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk")
+                // Replace the "-release" with ""
+                // Replace the "app" with the actual name, NotificationManager
+                newName = newName
+                        .replace("-" + variant.buildType.name, "")
+                        .replace(project.name, "NotificationManager")
+                variant.outputFile = new File(file.parent, newName)
+            }
         }
     }
     productFlavors {
