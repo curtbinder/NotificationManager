@@ -42,7 +42,7 @@ android {
                 def file = variant.outputFile
                 def newName
                 // Put the version and build numbers in the filename
-                newName = file.name.replace(".apk", "-" + defaultConfig.versionName + "-" + defaultConfig.versionCode + ".apk")
+                newName = file.name.replace(".apk", "-" + defaultConfig.versionName + ".apk")
                 // Replace the "-release" with ""
                 // Replace the "app" with the actual name, NotificationManager
                 newName = newName
