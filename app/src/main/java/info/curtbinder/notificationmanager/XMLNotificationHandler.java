@@ -97,7 +97,7 @@ public class XMLNotificationHandler extends DefaultHandler {
         } else if (tag.equals(XMLNotificationTags.COMPARISON)) {
             currentAlert.setComparison(Integer.parseInt(currentElement));
         } else if (tag.equals(XMLNotificationTags.VALUE)) {
-            currentAlert.setValue(Integer.parseInt(currentElement));
+            currentAlert.setValue(Float.parseFloat(currentElement));
         } else if (tag.equals(XMLNotificationTags.LASTALERT)) {
             currentAlert.setLastAlert(currentElement);
         } else if (tag.equals(XMLNotificationTags.ALERT_NAME)) {

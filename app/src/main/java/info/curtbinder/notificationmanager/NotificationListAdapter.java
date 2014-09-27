@@ -68,7 +68,6 @@ public class NotificationListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        // TODO inflate the layout, set the items/info, return the row
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View row = inflater.inflate(R.layout.row_notification_item, viewGroup, false);
         TextView tv1 = (TextView) row.findViewById(R.id.textName);
@@ -85,8 +84,8 @@ public class NotificationListAdapter extends BaseAdapter {
         tv2.setText(description);
         // ParamDescription Comparision Value
         int c = a.getComparison();
-        int v = a.getValue();
-        String s = String.format("%s %s %d", a.getParamDescription(), Alert.getComparisonString(c), v);
+        Float v = new Float(a.getValue());
+        String s = String.format("%s %s %s", a.getParamDescription(), Alert.getComparisonString(c), v.toString());
         tv3.setText(s);
         tv4.setText(a.getLastAlert());
         return row;
