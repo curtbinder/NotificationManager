@@ -37,6 +37,7 @@
     <string name="add_notification">Add Notification</string>
     <string name="no_username_set">No username set, canceled</string>
     <string name="general">General</string>
+    <string name="version">Version</string>
     <string name="add">Add</string>
     <string name="update">Update</string>
     <string name="cancel">Cancel</string>

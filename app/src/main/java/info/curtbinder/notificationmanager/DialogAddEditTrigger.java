@@ -143,7 +143,7 @@ public class DialogAddEditTrigger extends DialogFragment {
     private void updateAlert() {
         alert.setAlertName(editName.getText().toString());
         alert.setAlertDescription(editDescription.getText().toString());
-        alert.setValue(Integer.parseInt(editValue.getText().toString()));
+        alert.setValue(Float.parseFloat(editValue.getText().toString()));
         int pos = spinCond.getSelectedItemPosition();
         //Log.d(TAG, "Condition: " + pos);
         alert.setComparison(pos);

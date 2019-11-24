@@ -34,6 +34,11 @@
             android:title="@string/autoload_title"
             android:summary="@string/autoload_summary"
             android:defaultValue="false" />
+        <PreferenceScreen
+            android:key="@string/version"
+            android:selectable="false"
+            android:summary=""
+            android:title="@string/version" />
     </PreferenceCategory>
 
 </PreferenceScreen>

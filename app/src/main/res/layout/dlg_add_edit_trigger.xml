@@ -53,7 +53,8 @@
                     android:text="@string/name" />
 
                 <EditText
-                    android:id="@+id/editName" />
+                    android:id="@+id/editName"
+                    android:singleLine="true" />
             </TableRow>
 
 
@@ -112,8 +113,7 @@
 
                 <EditText
                     android:id="@+id/editValue"
-                    android:ems="10"
-                    android:inputType="number" />
+                    android:inputType="numberDecimal" />
             </TableRow>
 
 

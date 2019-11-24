@@ -24,6 +24,8 @@
 
 package info.curtbinder.notificationmanager;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.Preference;
@@ -63,6 +65,15 @@ public class Settings extends PreferenceActivity {
                     return true;
                 }
             });
+            p = findPreference(getString(R.string.version));
+            String v = "Unknown";
+            try {
+                PackageInfo pi = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+                v = pi.versionName;
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+            p.setSummary(v);
         }
     }
 }

@@ -52,7 +52,7 @@ public class Alert implements Parcelable {
     private String paramName;
     private String paramDescription;
     private int comparison;
-    private int value;
+    private float value;
     private String lastAlert;
     private String alertName;
     private String alertDescription;
@@ -75,7 +75,7 @@ public class Alert implements Parcelable {
         paramName = in.readString();
         paramDescription = in.readString();
         comparison = in.readInt();
-        value = in.readInt();
+        value = in.readFloat();
         lastAlert = in.readString();
         alertName = in.readString();
         alertDescription = in.readString();
@@ -146,11 +146,11 @@ public class Alert implements Parcelable {
         this.comparison = comparison;
     }
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(float value) {
         this.value = value;
     }
 
@@ -218,7 +218,7 @@ public class Alert implements Parcelable {
         out.writeString(paramName);
         out.writeString(paramDescription);
         out.writeInt(comparison);
-        out.writeInt(value);
+        out.writeFloat(value);
         out.writeString(lastAlert);
         out.writeString(alertName);
         out.writeString(alertDescription);
