@@ -31,7 +31,9 @@
         android:name=".BaseApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:label="@string/activity_name"
+        android:usesCleartextTraffic="true" >
         <activity
             android:name=".Main"
             android:label="@string/activity_name" >
